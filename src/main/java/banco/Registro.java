@@ -7,8 +7,8 @@ package banco;
 
 /**
  *
- * @author rhau
+ * @author isabella
  */
-public class Registro {
+public abstract class Registro {
     
 }

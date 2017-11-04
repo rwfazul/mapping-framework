@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.dao;
+package model.dao.mongo;
 
 import banco.nosql.mongodb.RegistrosMongo;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import model.Pessoa;
@@ -16,13 +18,20 @@ import org.bson.Document;
  *
  * @author rhau
  */
-public class PessoaDAO extends RegistrosMongo {
+public class PessoaDAO extends RegistrosMongo<Pessoa> {
     
+    @Override
+    public Connection abrir() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
     public void inserir(Pessoa p) {
         Document doc = new PessoaConversor().toDocument(p);
         inserirDocumento(doc);
     }
     
+    @Override
     public void alterar(Pessoa p) {
         Document doc = new PessoaConversor().toDocument(p);
         String chave = "_id"; 
@@ -30,10 +39,12 @@ public class PessoaDAO extends RegistrosMongo {
         alterarDocumento("_id", p.getId(), doc);
     }
     
+    @Override
     public void excluir(Pessoa p) {
         excluirDocumento("_id", p.getId());
     }
     
+    @Override
     public Collection<Pessoa> buscar(Pessoa p) {
         Collection<Document> documentos = buscarDocumento("nome", p.getNome()); 
         
@@ -46,6 +57,7 @@ public class PessoaDAO extends RegistrosMongo {
         return pessoas;
     }
     
+    @Override
     public Collection<Pessoa> buscarTodos() { 
         Collection<Pessoa> pessoas = new ArrayList<Pessoa>();
 

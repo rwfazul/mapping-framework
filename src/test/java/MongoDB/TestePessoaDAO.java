@@ -6,7 +6,7 @@
 package MongoDB;
 
 import model.Pessoa;
-import model.dao.PessoaDAO;
+import model.dao.mongo.PessoaDAO;
 
 /**
  *

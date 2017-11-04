@@ -6,6 +6,7 @@
 package banco.nosql.mongodb;
 
 import banco.Registro;
+import banco.RegistroDAO;
 import com.mongodb.client.MongoCollection;
 import static com.mongodb.client.model.Filters.eq;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ import org.bson.types.ObjectId;
  * @author rhau
  * @param <T>
  */
-public abstract class RegistrosMongo<T extends Registro> {
+public abstract class RegistrosMongo<T extends Registro> implements RegistroDAO<T> {
     
     private MongoCollection<Document> collection;
 

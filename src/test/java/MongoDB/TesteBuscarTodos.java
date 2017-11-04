@@ -20,8 +20,8 @@ public class TesteBuscarTodos {
     public static void main(String[] args) {
         MongoClientURI connectionString = new MongoClientURI("mongodb://localhost:27017");
         MongoClient mongoClient = new MongoClient();
-        MongoDatabase database = mongoClient.getDatabase("pessoa");
-        MongoCollection<Document> collection = database.getCollection("restaurants");
+        MongoDatabase database = mongoClient.getDatabase("registros");
+        MongoCollection<Document> collection = database.getCollection("pessoas");
         for (Document cur : collection.find()) {
             System.out.println(cur.toJson());
         }
