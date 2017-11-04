@@ -12,7 +12,7 @@ import java.time.LocalDate;
  *
  * @author isabella
  */
-public class Evento extends Registro{
+public class Evento extends Registro {
     private String id_evento;
     private String nome;
     private String descricao;
