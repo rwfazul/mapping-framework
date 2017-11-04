@@ -14,7 +14,7 @@ import java.sql.DriverManager;
  */
 public class ConexaoMySQL {
     public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String SENHA = "fourfonm";
+    static final String SENHA = "";
     static final String USUARIO = "root";
     static final String URL_CONEXAO = "jdbc:mysql://localhost/PGBD";
         
