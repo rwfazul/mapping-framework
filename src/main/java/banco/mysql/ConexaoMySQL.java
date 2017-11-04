@@ -13,14 +13,15 @@ import java.sql.DriverManager;
  * @author isabella
  */
 public class ConexaoMySQL {
-    public static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String SENHA = "";
+    public static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
+    static final String SENHA = "1234";
     static final String USUARIO = "root";
-    static final String URL_CONEXAO = "jdbc:mysql://localhost/PGBD";
+    static final String URL_CONEXAO = "jdbc:mysql://localhost/PGBD?useSSL=false";
         
-     public static Connection getConexao() throws Exception {
+    public static Connection getConexao() throws Exception {
         Class.forName(JDBC_DRIVER);
         Connection conn = DriverManager.getConnection(URL_CONEXAO, USUARIO, SENHA);
         return conn;
     }
+     
 }

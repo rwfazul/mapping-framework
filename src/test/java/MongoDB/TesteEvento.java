@@ -32,8 +32,9 @@ public class TesteEvento {
         
         testeBuscarTodos();
         testeInserir(new Evento("Evento 1", "Descricao evento 1", date1, date2));
+        testeInserir(new Evento("Evento 3", "Descricao evento 1", date1, date2));
         testeBuscarTodos();
-        testeDeletar(testeBuscar(new Evento("Evento 2")));
+        testeDeletar(testeBuscar(new Evento("Evento 3")));
         testeBuscarTodos();
         testeInserir(new Evento("Evento 2", "Descricao evento 2", date1, date2));
         testeBuscarTodos();

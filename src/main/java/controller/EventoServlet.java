@@ -89,7 +89,8 @@ public class EventoServlet extends HttpServlet {
         
         Evento e = new Evento(nome, descricao, data_inicio, data_fim);
 
-        EventoDAOMongo edao = new EventoDAOMongo();
+        //EventoDAOMongo edao = new EventoDAOMongo();
+        EventoDAOMySQL edao = new EventoDAOMySQL();
         edao.inserir(e);      
         processRequest(request, response);
     }

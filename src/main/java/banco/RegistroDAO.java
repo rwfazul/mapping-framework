@@ -14,10 +14,17 @@ import java.util.Collection;
  * @param <T>
  */
 public interface RegistroDAO<T extends Registro> {
+    
     abstract Connection abrir();
+    
     abstract void inserir(T t);
+    
     abstract void alterar(T t);
+    
     abstract void excluir(T t);
+    
     abstract Collection<T> buscar(T t);
+    
     abstract Collection<T> buscarTodos();
+    
 }
