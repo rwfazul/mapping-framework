@@ -25,8 +25,6 @@
         <c:if test="${empty page}"> 
             <jsp:include page="WEB-INF/jsp/paginas/dashboard.jsp" />
         </c:if>
-        
-        
-        
-    </body>
+       
+      </body>
 </html>
