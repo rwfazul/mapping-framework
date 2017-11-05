@@ -7,7 +7,6 @@ package model.dao.mongo;
 
 import banco.nosql.mongodb.RegistrosMongo;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import model.Evento;

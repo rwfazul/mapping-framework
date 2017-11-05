@@ -21,8 +21,8 @@ import model.Evento;
 public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
 
     public EventoDAOMySQL() {
-        setSqlInsercao("INSERT INTO evento (nome, descricao, data_inicio, data_fim) VALUES (?, ?, ?, ?)");
-        setSqlAlteracao("UPDATE evento SET nome = ?, descricao = ?, data_inicio = ?, data_fim = ? WHERE id_evento = ?");
+        setSqlInsercao("INSERT INTO evento (nome, descricao, data_inicio, data_fim, endereco, predio, sala) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        setSqlAlteracao("UPDATE evento SET nome = ?, descricao = ?, data_inicio = ?, data_fim = ?, endereco = ?, predio = ?, sala = ? WHERE id_evento = ?");
         setSqlExclusao("DELETE FROM evento WHERE nome = ?");
         setSqlBusca("SELECT * FROM evento WHERE nome = ?");
         setSqlBuscaTodos("SELECT * FROM evento");
@@ -34,6 +34,9 @@ public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
         ps.setString(2, e.getDescricao());
         ps.setDate(3, Date.valueOf(e.getData_inicio()));
         ps.setDate(4, Date.valueOf(e.getData_fim()));
+        ps.setString(5, e.getEndereco());
+        ps.setInt(6, e.getPredio());
+        ps.setInt(7, e.getSala());
     }
 
     @Override
@@ -42,7 +45,10 @@ public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
         ps.setString(2, e.getDescricao());
         ps.setDate(3, Date.valueOf(e.getData_inicio()));
         ps.setDate(4, Date.valueOf(e.getData_fim()));
-        ps.setString(5, e.getId_evento());
+        ps.setString(5, e.getEndereco());
+        ps.setInt(6, e.getPredio());
+        ps.setInt(7, e.getSala());
+        ps.setString(8, e.getId_evento());
     }
 
     @Override

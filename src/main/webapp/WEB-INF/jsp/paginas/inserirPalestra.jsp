@@ -30,10 +30,6 @@
                             <label class="control-label">Palestrante:</label>
                             <input class="form-control" required type="text" name="nomePalestrante"/>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">Local:</label>
-                            <input class="form-control" required type="text" name="assunto"/>
-                        </div>
                     <button type="submit" class="btn btn-primary">Cadastrar palestra</button>
                 </div></div>
             </form>

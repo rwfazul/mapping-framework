@@ -70,15 +70,12 @@ public class EventoServlet extends HttpServlet {
             throws ServletException, IOException {
         String nome = request.getParameter("nome");
         String descricao = request.getParameter("descricao");
-
-        /*DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
-        LocalDate data_inicio = LocalDate.parse(request.getParameter("data_inicio"), formatter);
-        LocalDate data_fim = LocalDate.parse(request.getParameter("data_fim"), formatter);
-        */
         LocalDate data_inicio = LocalDate.parse(request.getParameter("data_inicio"));
         LocalDate data_fim = LocalDate.parse(request.getParameter("data_fim"));
-        
-        Evento e = new Evento(nome, descricao, data_inicio, data_fim);
+        String endereco = request.getParameter("endereco");
+        Integer predio = Integer.parseInt(request.getParameter("predio"));
+        Integer sala = Integer.parseInt(request.getParameter("sala"));
+        Evento e = new Evento(nome, descricao, data_inicio, data_fim, endereco, predio, sala);
 
         //EventoDAOMongo edao = new EventoDAOMongo();
         EventoDAOMySQL edao = new EventoDAOMySQL();

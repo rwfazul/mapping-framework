@@ -25,7 +25,10 @@ public class EventoConversor extends Conversor<Evento> {
         Document doc = new Document("nome", e.getNome())
                         .append("descricao", e.getDescricao())
                         .append("data_inicio", date1)
-                        .append("data_fim", date2);
+                        .append("data_fim", date2)
+                        .append("endereco", e.getEndereco())
+                        .append("predio", e.getPredio())
+                        .append("sala", e.getSala());
         return doc;
     }
 
@@ -43,6 +46,9 @@ public class EventoConversor extends Conversor<Evento> {
         e.setDescricao((String) doc.get("descricao"));
         e.setData_inicio(data_inicio);
         e.setData_fim(data_fim);
+        e.setEndereco((String) doc.get("endereco"));
+        e.setPredio((Integer) doc.get("predio"));
+        e.setSala((Integer) doc.get("sala"));
         return e;
     }
     

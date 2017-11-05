@@ -31,12 +31,12 @@ public class TesteEvento {
         LocalDate date2 = LocalDate.now().plusDays(10);
         
         testeBuscarTodos();
-        testeInserir(new Evento("Evento 1", "Descricao evento 1", date1, date2));
-        testeInserir(new Evento("Evento 3", "Descricao evento 1", date1, date2));
+        testeInserir(new Evento("Evento 1", "Descricao evento 1", date1, date2, "endereço 1", 7, 100));
+        testeInserir(new Evento("Evento 2", "Descricao evento 2", date1, date2, "endereço 2", 13, 3442));
         testeBuscarTodos();
-        testeDeletar(testeBuscar(new Evento("Evento 3")));
+        testeDeletar(testeBuscar(new Evento("Evento 2")));
         testeBuscarTodos();
-        testeInserir(new Evento("Evento 2", "Descricao evento 2", date1, date2));
+        testeInserir(new Evento("Evento 3", "Descricao evento 3", date1, date2, "endereço 3", 42, 213));
         testeBuscarTodos();
         Evento busca = testeBuscar(new Evento("Evento 1"));
         busca.setDescricao("Descricao evento 1 novo");
