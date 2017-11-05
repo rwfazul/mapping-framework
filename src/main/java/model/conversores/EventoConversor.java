@@ -5,7 +5,6 @@
  */
 package model.conversores;
 
-import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -29,6 +28,7 @@ public class EventoConversor extends Conversor<Evento> {
                         .append("endereco", e.getEndereco())
                         .append("predio", e.getPredio())
                         .append("sala", e.getSala());
+        
         return doc;
     }
 
@@ -40,8 +40,8 @@ public class EventoConversor extends Conversor<Evento> {
         LocalDate data_inicio = date1.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         Date date2 = (Date) doc.get("data_fim");
         LocalDate data_fim = date2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        
-        e.setId_evento(doc.get("_id").toString());
+      
+        e.setId(doc.get("_id").toString());
         e.setNome((String) doc.get("nome"));
         e.setDescricao((String) doc.get("descricao"));
         e.setData_inicio(data_inicio);
@@ -49,6 +49,7 @@ public class EventoConversor extends Conversor<Evento> {
         e.setEndereco((String) doc.get("endereco"));
         e.setPredio((Integer) doc.get("predio"));
         e.setSala((Integer) doc.get("sala"));
+        
         return e;
     }
     

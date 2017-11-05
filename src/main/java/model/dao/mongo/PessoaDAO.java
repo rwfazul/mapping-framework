@@ -7,7 +7,6 @@ package model.dao.mongo;
 
 import banco.nosql.mongodb.RegistrosMongo;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import model.Pessoa;
@@ -19,12 +18,7 @@ import org.bson.Document;
  * @author rhau
  */
 public class PessoaDAO extends RegistrosMongo<Pessoa> {
-    
-    @Override
-    public Connection abrir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+   
     @Override
     public void inserir(Pessoa p) {
         Document doc = new PessoaConversor().toDocument(p);

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package banco.mysql;
+package banco.relacional.mysql;
 
 import banco.Registro;
 import banco.RegistroDAO;
@@ -70,60 +70,42 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
     }
 
     @Override
-    public Connection abrir() {
-        Connection c = null;
-        try {
-            c = ConexaoMySQL.getConexao();
-        } catch (Exception ex) {
-            Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        return c;
-    }
-
-    @Override
     public void inserir(T t) {
-        
+        Connection c = ConexaoMySQL.getConexao();
         try {
-            Connection conexao = ConexaoMySQL.getConexao();
-            System.out.println("CONEXAO " + conexao);
-            PreparedStatement ps = conexao.prepareStatement(getSqlInsercao());
+            PreparedStatement ps = c.prepareStatement(getSqlInsercao());
             preencherInsercao(ps, t);
             ps.execute();
             ps.close();
-            conexao.close();
+            c.close();
         } catch (SQLException ex) {
             Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (Exception ex) {
-            Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
-        } 
-
+        }
     }
 
     @Override
     public void alterar(T t) {
-        Connection conexao = abrir();
+        Connection c = ConexaoMySQL.getConexao();
         try {
-            PreparedStatement ps = conexao.prepareStatement(getSqlAlteracao());
+            PreparedStatement ps = c.prepareStatement(getSqlAlteracao());
             preencherAlteracao(ps, t);
             ps.execute();
             ps.close();
-            conexao.close();
+            c.close();
         } catch (SQLException ex) {
             Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
 
     @Override
     public void excluir(T t) {
-        Connection conexao = abrir();
+        Connection c = ConexaoMySQL.getConexao();
         try {
-            PreparedStatement ps = conexao.prepareStatement(getSqlExclusao());
+            PreparedStatement ps = c.prepareStatement(getSqlExclusao());
             preencherExclusao(ps, t);
             ps.execute();
             ps.close();
-            conexao.close();
+            c.close();
         } catch (SQLException ex) {
             Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
         } 
@@ -131,10 +113,10 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
 
     @Override
     public Collection<T> buscar(T t) {
-        Connection conexao = abrir();
+        Connection c = ConexaoMySQL.getConexao();
         Collection<T> registros = new ArrayList<T>();
         try {
-            PreparedStatement ps = conexao.prepareStatement(getSqlBusca());
+            PreparedStatement ps = c.prepareStatement(getSqlBusca());
             preencherBusca(ps, t);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -143,7 +125,7 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
             }
             rs.close();
             ps.close();
-            conexao.close();
+            c.close();
         } catch (SQLException ex) {
             Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -152,15 +134,15 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
 
     @Override
     public Collection<T> buscarTodos() {
-        Connection conexao = abrir();
+        Connection c = ConexaoMySQL.getConexao();
         Collection<T> registros = new ArrayList<T>();
         try {
-            PreparedStatement ps = conexao.prepareStatement(getSqlBuscaTodos());
+            PreparedStatement ps = c.prepareStatement(getSqlBuscaTodos());
             ResultSet rs = ps.executeQuery();
             registros = preencherLista(rs);
             ps.close();
             rs.close();
-            conexao.close();
+            c.close();
         } catch (SQLException ex) {
             Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -179,4 +161,5 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
     protected abstract T preencher(ResultSet rs) throws SQLException;
 
     protected abstract Collection<T> preencherLista(ResultSet rs) throws SQLException;
+    
 }

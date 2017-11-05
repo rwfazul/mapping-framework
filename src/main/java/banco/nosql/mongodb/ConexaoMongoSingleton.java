@@ -15,21 +15,20 @@ import org.bson.Document;
  *
  * @author rhau
  */
-public class ConexaoSingleton {
+public class ConexaoMongoSingleton {
     
-    private static ConexaoSingleton unicaInstacia;
-    
+    private static ConexaoMongoSingleton unicaInstacia;
     private MongoClient mongoClient;
     private MongoDatabase database;
     
-    private ConexaoSingleton() {
+    private ConexaoMongoSingleton() {
         
     }
     
     /* Garante sempre uma unica instancia da classe */
-    public static synchronized ConexaoSingleton getInstancia() {
+    public static synchronized ConexaoMongoSingleton getInstancia() {
         if (unicaInstacia == null)
-            unicaInstacia = new ConexaoSingleton();
+            unicaInstacia = new ConexaoMongoSingleton();
         return unicaInstacia;
     }
     

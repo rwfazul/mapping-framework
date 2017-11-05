@@ -26,7 +26,8 @@ import java.time.LocalDate;
  * @author isabella
  */
 public class Evento extends Registro {
-    private String id_evento;
+    
+    private String id;
     private String nome;
     private String descricao;
     private LocalDate data_inicio;
@@ -38,6 +39,7 @@ public class Evento extends Registro {
     public Evento(){
         
     }
+        
     public Evento(String nome){
         this.nome = nome;
     }
@@ -52,12 +54,12 @@ public class Evento extends Registro {
         this.sala = sala;
     }
 
-    public String getId_evento() {
-        return id_evento;
+    public String getId() {
+        return id;
     }
 
-    public void setId_evento(String id_evento) {
-        this.id_evento = id_evento;
+    public void setId(String id) {
+        this.id = id;
     }
  
     public String getNome() {
@@ -117,11 +119,9 @@ public class Evento extends Registro {
         this.predio = predio;
     }
     
-    
-    
     @Override
     public String toString() {
-        return "Evento{" + "id=" + id_evento + ", nome=" + nome + ""
+        return "Evento{" + "id=" + id + ", nome=" + nome + ""
                 + ", descricao=" + descricao + ", data_inicio=" + data_inicio + ""
                 + ", data_fim=" + data_fim + ", endereco=" + endereco + ""
                 + ", predio=" + predio + ", sala=" + sala + '}';

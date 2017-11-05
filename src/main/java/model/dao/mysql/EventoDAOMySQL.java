@@ -5,7 +5,7 @@
  */
 package model.dao.mysql;
 
-import banco.mysql.RegistrosMySQL;
+import banco.relacional.mysql.RegistrosMySQL;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,7 +48,7 @@ public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
         ps.setString(5, e.getEndereco());
         ps.setInt(6, e.getPredio());
         ps.setInt(7, e.getSala());
-        ps.setString(8, e.getId_evento());
+        ps.setString(8, e.getId());
     }
 
     @Override
@@ -64,7 +64,7 @@ public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
     @Override
     protected Evento preencher(ResultSet rs) throws SQLException {
         Evento e = new Evento();
-        e.setId_evento(rs.getString("id_evento"));
+        e.setId(rs.getString("id_evento"));
         e.setNome(rs.getString("nome"));
         e.setDescricao(rs.getString("descricao"));
         e.setData_inicio(rs.getDate("Data_inicio").toLocalDate());
@@ -75,11 +75,8 @@ public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
     @Override
     protected Collection<Evento> preencherLista(ResultSet rs) throws SQLException {
         Collection<Evento> retorno = new ArrayList<Evento>();
-        while (rs.next()) {
-            Evento e = new Evento();
-            e = preencher(rs);
-            retorno.add(e);
-        }
+        while (rs.next())
+            retorno.add( preencher(rs) );
         return retorno;
     }
 

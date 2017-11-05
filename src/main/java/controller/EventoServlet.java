@@ -74,7 +74,8 @@ public class EventoServlet extends HttpServlet {
         LocalDate data_fim = LocalDate.parse(request.getParameter("data_fim"));
         String endereco = request.getParameter("endereco");
         Integer predio = Integer.parseInt(request.getParameter("predio"));
-        Integer sala = Integer.parseInt(request.getParameter("sala"));
+        // Integer sala = Integer.parseInt(request.getParameter("sala"));
+        Integer sala = 500;
         Evento e = new Evento(nome, descricao, data_inicio, data_fim, endereco, predio, sala);
 
         //EventoDAOMongo edao = new EventoDAOMongo();

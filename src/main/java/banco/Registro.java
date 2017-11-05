@@ -9,6 +9,6 @@ package banco;
  *
  * @author isabella
  */
-public abstract class Registro {
+public class Registro {
     
 }

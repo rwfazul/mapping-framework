@@ -5,7 +5,6 @@
  */
 package banco;
 
-import java.sql.Connection;
 import java.util.Collection;
 
 /**
@@ -14,9 +13,7 @@ import java.util.Collection;
  * @param <T>
  */
 public interface RegistroDAO<T extends Registro> {
-    
-    abstract Connection abrir();
-    
+        
     abstract void inserir(T t);
     
     abstract void alterar(T t);

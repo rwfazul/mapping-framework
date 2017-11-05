@@ -50,7 +50,7 @@ public class TesteEvento {
     }
     
     public static void testeAtualizar(Evento e) {
-        System.out.println("Atualizando evento (" + e.getId_evento() + ")...");
+        System.out.println("Atualizando evento (" + e.getId() + ")...");
         edao.alterar(e);
     }
     

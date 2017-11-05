@@ -24,7 +24,7 @@ public abstract class RegistrosMongo<T extends Registro> implements RegistroDAO<
     private MongoCollection<Document> collection;
 
     public RegistrosMongo() {
-        this.collection = ConexaoSingleton.getInstancia().getMongoCollection();
+        this.collection = ConexaoMongoSingleton.getInstancia().getMongoCollection();
     }
     
     public void inserirDocumento(Document doc) {

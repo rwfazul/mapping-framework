@@ -6,7 +6,6 @@
 package model.dao.mongo;
 
 import banco.nosql.mongodb.RegistrosMongo;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collection;
 import model.Evento;
@@ -20,11 +19,6 @@ import org.bson.Document;
 public class EventoDAOMongo extends RegistrosMongo<Evento> {
 
     @Override
-    public Connection abrir() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public void inserir(Evento e) {
         Document doc = new EventoConversor().toDocument(e);
         inserirDocumento(doc);
@@ -34,13 +28,13 @@ public class EventoDAOMongo extends RegistrosMongo<Evento> {
     public void alterar(Evento e){
         Document doc = new EventoConversor().toDocument(e);
         String chave = "_id"; 
-        String valor = e.getId_evento();
-        alterarDocumento("_id",  e.getId_evento(), doc);
+        String valor = e.getId();
+        alterarDocumento("_id",  e.getId(), doc);
     }
 
     @Override
     public void excluir(Evento e) {
-        excluirDocumento("_id", e.getId_evento());
+        excluirDocumento("_id", e.getId());
     }
 
     @Override
@@ -65,7 +59,7 @@ public class EventoDAOMongo extends RegistrosMongo<Evento> {
             Evento evento = new EventoConversor().toModel(doc);
             eventos.add(evento);
         }
-        
+
         return eventos;    
     }
     
