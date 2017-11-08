@@ -1,15 +1,21 @@
-<%-- 
-    Document   : inserirEvento
-    Created on : 30/10/2017, 01:37:26
-    Author     : isabella
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <title>Teste</title>
+    <link rel="stylesheet" href="recursos/_bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="recursos/_font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/menu-dashboard.css">
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
     </head>
     <body> 
         <form action="eventoServlet" method="POST">
@@ -97,25 +103,23 @@
                             <button type="submit" class="btn btn-primary">Cadastrar evento</button>
                         </div></div>
                 </div>
-            </div></form>
+            </div></form> <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="recursos/_bootstrap/js/bootstrap.min.js"></script>
         <script>
             $(document).ready(function () {
                 var $predioSel = $("#predioSel");
                 var $enderecoSel = $("#enderecoSel");
                 $predioSel.hide();
                 $enderecoSel.hide();
-
                 var $endereco = $("#endereco");
                 var $predio = $("#predio");
                 var $sala = $("#sala");
-
                 $('#local').change(function () {      
                     var selLocal = document.getElementById('local');
                     var selLocalValor = selLocal.options[selLocal.selectedIndex].value;
                     $sala.prop('disabled', false);
                     $endereco.prop('disabled', false);
                     $predio.prop('disabled', false);
-
                     if (selLocalValor === "ufsm") {
                         $endereco.hide();
                         $endereco.prop("name", null);                     
@@ -133,11 +137,9 @@
                         $predio.prop("name", "predio");          
                     }
                 });
-
                 $('#enderecoSel').change(function () {
                     var endSel = document.getElementById('enderecoSel');
                     var endSelVal = endSel.options[endSel.selectedIndex].value;
-
                     if (endSelVal === "R. Floriano Peixoto, 1184 - Centro") {
                         $predioSel.hide();
                         $predioSel.prop("name", null);
