@@ -114,7 +114,7 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
     @Override
     public Collection<T> buscar(T t) {
         Connection c = ConexaoMySQL.getConexao();
-        Collection<T> registros = new ArrayList<T>();
+        Collection<T> registros = new ArrayList<>();
         try {
             PreparedStatement ps = c.prepareStatement(getSqlBusca());
             preencherBusca(ps, t);
@@ -135,7 +135,7 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
     @Override
     public Collection<T> buscarTodos() {
         Connection c = ConexaoMySQL.getConexao();
-        Collection<T> registros = new ArrayList<T>();
+        Collection<T> registros = new ArrayList<>();
         try {
             PreparedStatement ps = c.prepareStatement(getSqlBuscaTodos());
             ResultSet rs = ps.executeQuery();

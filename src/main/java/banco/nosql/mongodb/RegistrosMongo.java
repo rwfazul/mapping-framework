@@ -28,7 +28,7 @@ public abstract class RegistrosMongo<T extends Registro> implements RegistroDAO<
     }
     
     public void inserirDocumento(Document doc) {
-       collection.insertOne(doc);
+        collection.insertOne(doc);
     }
     
     public void alterarDocumento(String chave, String valor, Document doc) {
