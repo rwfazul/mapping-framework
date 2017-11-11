@@ -28,13 +28,13 @@ public class EventoDAOMongo extends RegistrosMongo<Evento> {
     public void alterar(Evento e){
         Document doc = new EventoConversor().toDocument(e);
         String chave = "_id"; 
-        String valor = e.getId();
-        alterarDocumento("_id",  e.getId(), doc);
+        //String valor = e.getId();
+        //alterarDocumento("_id",  e.getId(), doc);
     }
 
     @Override
     public void excluir(Evento e) {
-        excluirDocumento("_id", e.getId());
+        //excluirDocumento("_id", e.getId());
     }
 
     @Override
