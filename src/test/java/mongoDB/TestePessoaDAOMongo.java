@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MongoDB;
+package mongoDB;
 
 import model.Pessoa;
-import model.dao.mongo.PessoaDAO;
 
 /**
  *
  * @author rhau
  */
-public class TestePessoaDAO {
+public class TestePessoaDAOMongo {
     
-    static PessoaDAO pdao = new PessoaDAO();
+    static PessoaDAOMongoTeste pdao = new PessoaDAOMongoTeste();
 
     public static void main(String[] args) {
         testeBuscarTodos();

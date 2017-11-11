@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package MongoDB;
+package mongoDB;
 
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
@@ -15,7 +15,7 @@ import org.bson.Document;
  *
  * @author rhau
  */
-public class TesteBuscarTodos {
+public class TesteBuscarTodosMongo {
     
     public static void main(String[] args) {
         MongoClientURI connectionString = new MongoClientURI("mongodb://localhost:27017");

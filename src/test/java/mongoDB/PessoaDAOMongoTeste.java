@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.dao.mongo;
+package mongoDB;
 
 import banco.nosql.mongodb.RegistrosMongo;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.Collection;
 import model.Pessoa;
@@ -17,7 +16,7 @@ import org.bson.Document;
  *
  * @author rhau
  */
-public class PessoaDAO extends RegistrosMongo<Pessoa> {
+public class PessoaDAOMongoTeste extends RegistrosMongo<Pessoa> {
    
     @Override
     public void inserir(Pessoa p) {
