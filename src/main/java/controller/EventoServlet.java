@@ -5,6 +5,7 @@
  */
 package controller;
 
+import banco.RegistroDAO;
 import java.io.IOException;;
 import java.time.LocalDate;
 import javax.servlet.RequestDispatcher;
@@ -79,7 +80,7 @@ public class EventoServlet extends HttpServlet {
         Evento e = new Evento(nome, descricao, data_inicio, data_fim, endereco, predio, sala);
 
         //EventoDAOMongo edao = new EventoDAOMongo();
-        EventoDAOMySQL edao = new EventoDAOMySQL();
+        RegistroDAO edao = new EventoDAOMySQL();
         edao.inserir(e);      
         processRequest(request, response);
     }
