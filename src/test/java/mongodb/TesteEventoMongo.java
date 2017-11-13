@@ -3,11 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mongoDB;
+package mongodb;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Evento;
 import model.Palestra;
 import model.Palestrante;
@@ -39,9 +43,14 @@ public class TesteEventoMongo {
         Palestrante pal1 = new Palestrante("Paulo", 'M', "Mestrado", "Sistemas de Informação", "UFSM");
         Palestrante pal2 = new Palestrante("Joana", 'F', "Doutorado", "Ciência da Computação", "PUC");
         
-        String data = "2016-09-21 13:43";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(data, formatter);
+        String data = "02-01-2017 20:00";
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        Date dateTime = null;
+        try {
+            dateTime = format.parse(data);
+        } catch (ParseException ex) {
+            Logger.getLogger(TesteEventoMongo.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         Palestra pa1 = new Palestra();
         pa1.setTitulo("Surpresas do big data");
@@ -62,9 +71,13 @@ public class TesteEventoMongo {
         pa2.setSala(s2);
         
         data = "25-01-2016";
-        formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate date = LocalDate.parse(data, formatter);
-        
+        format = new SimpleDateFormat("dd-MM-yyyy");
+        Date date = null;
+        try {
+            date = format.parse(data);
+        } catch (ParseException ex) {
+            Logger.getLogger(TesteEventoMongo.class.getName()).log(Level.SEVERE, null, ex);
+        }        
         Evento e1 = new Evento();
         e1.setNome("sainf");
         e1.setDescricao("inf");
@@ -126,20 +139,23 @@ public class TesteEventoMongo {
     }    
 
     private static void imprime_evento(Evento e) {
-        System.out.println("_id: " + e.getIdString());
+        SimpleDateFormat formatEvento = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatPalestra = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+
+        System.out.println("_id: " + e.getId());
         System.out.println("nome: " + e.getNome());
         System.out.println("descricão: " + e.getDescricao());
         System.out.println("endereço: " + e.getEndereco());
-        System.out.println("dataInicio: " + e.getDataInicio());
-        System.out.println("dataFim: " + e.getDataFim());
+        System.out.println("dataInicio: " + formatEvento.format(e.getDataInicio()));
+        System.out.println("dataFim: " + formatEvento.format(e.getDataFim()));
         System.out.println("predio: { nome: " + e.getPredio().getNome() + " }");
         System.out.println("palestras: [");
         for (Palestra p : e.getPalestras()) {
             System.out.println("\t{ titulo: " + p.getTitulo());
             System.out.println("\t  assunto: " + p.getAssunto());
             System.out.println("\t  descricao: " + p.getDescricao());
-            System.out.println("\t  inicio: " + p.getInicio());
-            System.out.println("\t  fim: " + p.getFim());
+            System.out.println("\t  inicio: " + formatPalestra.format(p.getInicio()));
+            System.out.println("\t  fim: " + formatPalestra.format(p.getFim()));
             System.out.println("\t  palestrante: {");
             System.out.println("\t\tnome: " + p.getPalestrante().getNome());
             System.out.println("\t\tsexo: " + p.getPalestrante().getSexo());

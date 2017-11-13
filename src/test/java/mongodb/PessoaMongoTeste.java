@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package mongodb;
 
 import banco.Registro;
 
@@ -11,26 +11,26 @@ import banco.Registro;
  *
  * @author rhau
  */
-public class Pessoa extends Registro {
+public class PessoaMongoTeste extends Registro {
  
     private String id;
     private String nome;
     private Integer CPF;
 
-    public Pessoa() {
+    public PessoaMongoTeste() {
         
     }
     
-    public Pessoa(String nome) {
+    public PessoaMongoTeste(String nome) {
         this.nome = nome;
     }
     
-    public Pessoa(String nome, Integer CPF) {
+    public PessoaMongoTeste(String nome, Integer CPF) {
         this.nome = nome;
         this.CPF = CPF;
     }
 
-    public Pessoa(String id, String nome, Integer CPF) {
+    public PessoaMongoTeste(String id, String nome, Integer CPF) {
         this.id = id;
         this.nome = nome;
         this.CPF = CPF;
