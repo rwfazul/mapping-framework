@@ -6,13 +6,13 @@
 package model.dao.mysql;
 
 import banco.relacional.mysql.RegistrosMySQL;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import model.Evento;
+import model.Palestra;
 
 /**
  *
@@ -21,39 +21,38 @@ import model.Evento;
 public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
 
     public EventoDAOMySQL() {
-        setSqlInsercao("INSERT INTO evento (nome, descricao, data_inicio, data_fim, endereco, predio, sala) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        setSqlAlteracao("UPDATE evento SET nome = ?, descricao = ?, data_inicio = ?, data_fim = ?, endereco = ?, predio = ?, sala = ? WHERE id_evento = ?");
-        setSqlExclusao("DELETE FROM evento WHERE nome = ?");
-        setSqlBusca("SELECT * FROM evento WHERE nome = ?");
+        setSqlInsercao("INSERT INTO evento");
+        setSqlAlteracao("UPDATE evento");
+        setSqlExclusao("DELETE FROM evento WHERE id_evento = ?");
+        setSqlBuscaChavePrimaria("SELECT * FROM evento WHERE id_evento = ?");
+        setSqlBusca("SELECT * FROM evento WHERE nome_evento = ?");
         setSqlBuscaTodos("SELECT * FROM evento");
     }
 
     @Override
     protected void preencherInsercao(PreparedStatement ps, Evento e) throws SQLException {
-        ps.setString(1, e.getNome());
-        ps.setString(2, e.getDescricao());
-        ps.setDate(3, Date.valueOf(e.getData_inicio()));
-        ps.setDate(4, Date.valueOf(e.getData_fim()));
-        ps.setString(5, e.getEndereco());
-        ps.setInt(6, e.getPredio());
-        ps.setInt(7, e.getSala());
+        ps.setInt(1, e.getPredio().getId());
+        ps.setString(2, e.getNome());
+        ps.setString(3, e.getDescricao());
+        ps.setString(4, e.getEndereco());
+        ps.setDate(5, new java.sql.Date(e.getDataInicio().getTime()));
+        ps.setDate(6, new java.sql.Date(e.getDataFim().getTime()));
     }
 
     @Override
     protected void preencherAlteracao(PreparedStatement ps, Evento e) throws SQLException {
-        ps.setString(1, e.getNome());
-        ps.setString(2, e.getDescricao());
-        ps.setDate(3, Date.valueOf(e.getData_inicio()));
-        ps.setDate(4, Date.valueOf(e.getData_fim()));
-        ps.setString(5, e.getEndereco());
-        ps.setInt(6, e.getPredio());
-        ps.setInt(7, e.getSala());
-        ps.setString(8, e.getId());
+        ps.setInt(1, e.getPredio().getId());
+        ps.setString(2, e.getNome());
+        ps.setString(3, e.getDescricao());
+        ps.setDate(6, new java.sql.Date(e.getDataFim().getTime()));
+        ps.setString(4, e.getEndereco());
+        ps.setDate(5, new java.sql.Date(e.getDataInicio().getTime()));
+        ps.setInt(7, Integer.parseInt(e.getId()));
     }
 
     @Override
     protected void preencherExclusao(PreparedStatement ps, Evento e) throws SQLException {
-        ps.setString(1, e.getNome());
+        ps.setInt(1, Integer.parseInt(e.getId()));
     }
 
     @Override
@@ -65,19 +64,27 @@ public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
     protected Evento preencher(ResultSet rs) throws SQLException {
         Evento e = new Evento();
         e.setId(rs.getString("id_evento"));
-        e.setNome(rs.getString("nome"));
-        e.setDescricao(rs.getString("descricao"));
-        e.setData_inicio(rs.getDate("Data_inicio").toLocalDate());
-        e.setData_fim(rs.getDate("Data_fim").toLocalDate());
+        e.setPredio( new PredioDAOMySQL().buscar(rs.getInt("id_predio")) );
+        e.setNome(rs.getString("nome_evento"));
+        e.setDescricao(rs.getString("descricao_evento"));
+        e.setEndereco(rs.getString("endereco"));
+        e.setDataInicio(rs.getDate("data_inicio"));
+        e.setDataFim(rs.getDate("data_fim"));
+        
+        // Busca palestras pelo id_evento
+        Palestra p = new Palestra();
+        p.setEvento(e); 
+        e.setPalestras( new PalestraDAOMySQL().buscar(p) );
+        
         return e;
     }
 
     @Override
     protected Collection<Evento> preencherLista(ResultSet rs) throws SQLException {
-        Collection<Evento> retorno = new ArrayList<Evento>();
+        Collection<Evento> eventos = new ArrayList<>();
         while (rs.next())
-            retorno.add( preencher(rs) );
-        return retorno;
+            eventos.add( preencher(rs) );
+        return eventos;
     }
 
 }

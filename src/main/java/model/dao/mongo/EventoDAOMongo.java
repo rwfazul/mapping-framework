@@ -28,20 +28,20 @@ public class EventoDAOMongo extends RegistrosMongo<Evento> {
     public void alterar(Evento e){
         Document doc = new EventoConversor().toDocument(e);
         String chave = "_id"; 
-        //String valor = e.getId();
-        //alterarDocumento("_id",  e.getId(), doc);
+        String valor = e.getId();
+        alterarDocumento("_id",  e.getId(), doc);
     }
 
     @Override
     public void excluir(Evento e) {
-        //excluirDocumento("_id", e.getId());
+        excluirDocumento("_id", e.getId());
     }
 
     @Override
     public Collection<Evento> buscar(Evento e) {
         Collection<Document> documentos = buscarDocumento("nome", e.getNome()); 
         
-        Collection<Evento> eventos = new ArrayList<Evento>();
+        Collection<Evento> eventos = new ArrayList<>();
         for (Document doc : documentos) {
             Evento evento = new EventoConversor().toModel(doc);
             eventos.add(evento);
@@ -52,7 +52,7 @@ public class EventoDAOMongo extends RegistrosMongo<Evento> {
 
     @Override
     public Collection<Evento> buscarTodos(){
-        Collection<Evento> eventos = new ArrayList<Evento>();
+        Collection<Evento> eventos = new ArrayList<>();
 
         Collection<Document> documentos = buscarTodosDocumentos();         
         for (Document doc : documentos) {
