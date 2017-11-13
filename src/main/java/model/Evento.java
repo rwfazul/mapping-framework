@@ -6,9 +6,9 @@
 package model;
 
 import banco.Registro;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 /**
  *
@@ -16,21 +16,20 @@ import java.util.Collection;
  */
 public class Evento extends Registro {
     
-    private Integer id; // provisorio, no fim utilizar apenas o string e fazer parser do id do mysql
-    private String idString; 
+    private String id; // string para incluir uso do mongodb 
     private Predio predio; // predio principal onde o evento ocorre
     private String nome;
     private String descricao;
     private String endereco;
-    private LocalDate dataInicio;
-    private LocalDate dataFim;
+    private Date dataInicio;
+    private Date dataFim;
     private Collection<Palestra> palestras = new ArrayList<>(); // referencia para criar obj mongo
 
     public Evento() {
         
     }
 
-    public Evento(Predio predio, String nome, String descricao, String endereco, LocalDate dataInicio, LocalDate dataFim) {
+    public Evento(Predio predio, String nome, String descricao, String endereco, Date dataInicio, Date dataFim) {
         this.predio = predio;
         this.nome = nome;
         this.descricao = descricao;
@@ -39,7 +38,7 @@ public class Evento extends Registro {
         this.dataFim = dataFim;
     }
 
-    public Evento(Integer id, Predio predio, String nome, String descricao, String endereco, LocalDate dataInicio, LocalDate dataFim) {
+    public Evento(String id, Predio predio, String nome, String descricao, String endereco, Date dataInicio, Date dataFim) {
         this.id = id;
         this.predio = predio;
         this.nome = nome;
@@ -52,29 +51,15 @@ public class Evento extends Registro {
     /**
      * @return the id
      */
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
-    }
-
-    /**
-     * @return the idString
-     */
-    public String getIdString() {
-        return idString;
-    }
-
-    /**
-     * @param idString the idString to set
-     */
-    public void setIdString(String idString) {
-        this.idString = idString;
     }
     
     /**
@@ -136,28 +121,28 @@ public class Evento extends Registro {
     /**
      * @return the dataInicio
      */
-    public LocalDate getDataInicio() {
+    public Date getDataInicio() {
         return dataInicio;
     }
 
     /**
      * @param dataInicio the dataInicio to set
      */
-    public void setDataInicio(LocalDate dataInicio) {
+    public void setDataInicio(Date dataInicio) {
         this.dataInicio = dataInicio;
     }
 
     /**
      * @return the dataFim
      */
-    public LocalDate getDataFim() {
+    public Date getDataFim() {
         return dataFim;
     }
 
     /**
      * @param dataFim the dataFim to set
      */
-    public void setDataFim(LocalDate dataFim) {
+    public void setDataFim(Date dataFim) {
         this.dataFim = dataFim;
     }    
     
@@ -177,7 +162,7 @@ public class Evento extends Registro {
 
     @Override
     public String toString() {
-        return "Evento{" + "id=" + id + ", idString=" + idString + ", predio=" + predio + ", nome=" + nome + ", descricao=" + descricao + ", endereco=" + endereco + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", palestras=" + palestras + '}';
+        return "Evento{" + "id=" + id + ", predio=" + predio + ", nome=" + nome + ", descricao=" + descricao + ", endereco=" + endereco + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", palestras=" + palestras + '}';
     }
     
 }

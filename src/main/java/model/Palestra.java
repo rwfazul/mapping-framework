@@ -5,13 +5,14 @@
  */
 package model;
 
-import java.time.LocalDateTime;
+import banco.Registro;
+import java.util.Date;
 
 /**
  *
  * @author rhau
  */
-public class Palestra {
+public class Palestra extends Registro {
 
     private Integer id;
     private Palestrante palestrante;
@@ -20,14 +21,14 @@ public class Palestra {
     private String titulo;
     private String assunto;
     private String descricao;
-    private LocalDateTime inicio;
-    private LocalDateTime fim;
+    private Date inicio;
+    private Date fim;
 
     public Palestra() {
         
     }
 
-    public Palestra(Palestrante palestrante, Evento evento, Sala sala, String titulo, String assunto, String descricao, LocalDateTime inicio, LocalDateTime fim) {
+    public Palestra(Palestrante palestrante, Evento evento, Sala sala, String titulo, String assunto, String descricao, Date inicio, Date fim) {
         this.palestrante = palestrante;
         this.evento = evento;
         this.sala = sala;
@@ -38,7 +39,7 @@ public class Palestra {
         this.fim = fim;
     }
 
-    public Palestra(Integer id, Palestrante palestrante, Evento evento, Sala sala, String titulo, String assunto, String descricao, LocalDateTime inicio, LocalDateTime fim) {
+    public Palestra(Integer id, Palestrante palestrante, Evento evento, Sala sala, String titulo, String assunto, String descricao, Date inicio, Date fim) {
         this.id = id;
         this.palestrante = palestrante;
         this.evento = evento;
@@ -151,28 +152,28 @@ public class Palestra {
     /**
      * @return the inicio
      */
-    public LocalDateTime getInicio() {
+    public Date getInicio() {
         return inicio;
     }
 
     /**
      * @param inicio the inicio to set
      */
-    public void setInicio(LocalDateTime inicio) {
+    public void setInicio(Date inicio) {
         this.inicio = inicio;
     }
 
     /**
      * @return the fim
      */
-    public LocalDateTime getFim() {
+    public Date getFim() {
         return fim;
     }
 
     /**
      * @param fim the fim to set
      */
-    public void setFim(LocalDateTime fim) {
+    public void setFim(Date fim) {
         this.fim = fim;
     }
 

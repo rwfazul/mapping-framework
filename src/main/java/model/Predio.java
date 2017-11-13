@@ -5,11 +5,13 @@
  */
 package model;
 
+import banco.Registro;
+
 /**
  *
  * @author rhau
  */
-public class Predio {
+public class Predio extends Registro {
     
     private Integer id;
     private String nome;
