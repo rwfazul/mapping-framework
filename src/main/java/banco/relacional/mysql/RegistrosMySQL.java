@@ -26,7 +26,8 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
     private String sqlInsercao;
     private String sqlAlteracao;
     private String sqlExclusao;
-    private String sqlBusca;
+    private String sqlBuscaChavePrimaria;
+    private String sqlBusca; // personalizada em cada DAO
     private String sqlBuscaTodos;
 
     public String getSqlInsercao() {
@@ -53,6 +54,14 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
         this.sqlExclusao = sqlExclusao;
     }
 
+    public String getSqlBuscaChavePrimaria() {
+        return sqlBuscaChavePrimaria;
+    }
+
+    public void setSqlBuscaChavePrimaria(String sqlBuscaChavePrimaria) {
+        this.sqlBuscaChavePrimaria = sqlBuscaChavePrimaria;
+    }
+    
     public String getSqlBusca() {
         return sqlBusca;
     }
@@ -130,6 +139,24 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
             Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         return registros;
+    }
+    
+    public T buscar(Integer id) {
+        Connection c = ConexaoMySQL.getConexao();
+        T registro = null;
+        try {
+            PreparedStatement ps = c.prepareStatement(getSqlBuscaChavePrimaria());
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) 
+                registro = preencher(rs);
+            rs.close();
+            ps.close();
+            c.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return registro;
     }
 
     @Override
