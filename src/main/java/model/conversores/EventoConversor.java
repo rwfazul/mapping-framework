@@ -5,15 +5,13 @@
  */
 package model.conversores;
 
-import com.mongodb.BasicDBList;
-import com.mongodb.BasicDBObject;
-import com.mongodb.DBObject;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import model.Evento;
 import model.Palestra;
 import org.bson.Document;
+import util.DateUtils;
 
 /**
  *
@@ -23,11 +21,12 @@ public class EventoConversor extends Conversor<Evento> {
 
     @Override
     public Document toDocument(Evento e) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Document doc = new Document("nome", e.getNome())
                         .append("descricao", e.getDescricao())
                         .append("endereco", e.getEndereco())
-                        .append("dataInicio", e.getDataInicio().toString())
-                        .append("dataFim", e.getDataFim().toString())
+                        .append("dataInicio", DateUtils.toString(e.getDataInicio(), "yyyy-MM-dd"))
+                        .append("dataFim", DateUtils.toString(e.getDataFim(), "yyyy-MM-dd"))
                         .append("predio", new PredioConversor().toDocument(e.getPredio()));
         Collection<Document> documents = new ArrayList<>();
         for (Palestra p : e.getPalestras()) 
@@ -39,12 +38,12 @@ public class EventoConversor extends Conversor<Evento> {
     @Override
     public Evento toModel(Document doc) { 
         Evento e = new Evento();
-        e.setIdString(doc.get("_id").toString());
+        e.setId(doc.get("_id").toString());
         e.setNome((String) doc.get("nome"));
         e.setDescricao((String) doc.get("descricao"));
         e.setEndereco((String) doc.get("endereco"));
-        e.setDataInicio(LocalDate.parse((String) doc.get("dataInicio")));
-        e.setDataFim(LocalDate.parse((String) doc.get("dataFim")));
+        e.setDataInicio(DateUtils.toDate((String) doc.get("dataInicio"), "yyyy-MM-dd"));
+        e.setDataFim(DateUtils.toDate((String) doc.get("dataFim"), "yyyy-MM-dd"));
         e.setPredio(new PredioConversor().toModel(doc));
         for (Document d : (Collection<Document>) doc.get("palestras")) 
             e.getPalestras().add(new PalestraConversor().toModel(d));

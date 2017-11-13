@@ -5,9 +5,10 @@
  */
 package model.conversores;
 
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
 import model.Palestra;
 import org.bson.Document;
+import util.DateUtils;
 
 /**
  *
@@ -17,11 +18,12 @@ public class PalestraConversor extends Conversor<Palestra> {
 
     @Override
     public Document toDocument(Palestra p) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Document doc = new Document("titulo", p.getTitulo())
                         .append("assunto", p.getAssunto())
                         .append("descricao", p.getDescricao())
-                        .append("inicio", p.getInicio().toString())
-                        .append("fim", p.getFim().toString())
+                        .append("inicio", DateUtils.toString(p.getInicio(), "yyyy-MM-dd HH:mm"))
+                        .append("fim", DateUtils.toString(p.getFim(), "yyyy-MM-dd HH:mm"))
                         .append("palestrante", new PalestranteConversor().toDocument(p.getPalestrante()))
                         .append("sala", new SalaConversor().toDocument(p.getSala()));
         return doc;
@@ -33,8 +35,8 @@ public class PalestraConversor extends Conversor<Palestra> {
         p.setTitulo((String) doc.get("titulo"));
         p.setAssunto((String) doc.get("assunto"));
         p.setDescricao((String) doc.get("descricao"));
-        p.setInicio(LocalDateTime.parse((String) doc.get("inicio")));
-        p.setFim(LocalDateTime.parse((String) doc.get("fim")));
+        p.setInicio(DateUtils.toDate((String) doc.get("inicio"), "yyyy-MM-dd HH:mm"));
+        p.setFim(DateUtils.toDate((String) doc.get("fim"), "yyyy-MM-dd HH:mm"));
         p.setPalestrante(new PalestranteConversor().toModel(doc));
         p.setSala(new SalaConversor().toModel(doc));
         return p;      
