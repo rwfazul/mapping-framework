@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import model.Evento;
 import model.Palestra;
+import model.Predio;
 
 /**
  *
@@ -31,22 +32,22 @@ public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
 
     @Override
     protected void preencherInsercao(PreparedStatement ps, Evento e) throws SQLException {
-        ps.setInt(1, e.getPredio().getId());
-        ps.setString(2, e.getNome());
-        ps.setString(3, e.getDescricao());
-        ps.setString(4, e.getEndereco());
+        ps.setString(1, e.getNome());
+        ps.setString(2, e.getDescricao());
+        ps.setString(3, e.getEndereco());
+        ps.setString(4, e.getPredio().getNome());
         ps.setDate(5, new java.sql.Date(e.getDataInicio().getTime()));
         ps.setDate(6, new java.sql.Date(e.getDataFim().getTime()));
     }
 
     @Override
     protected void preencherAlteracao(PreparedStatement ps, Evento e) throws SQLException {
-        ps.setInt(1, e.getPredio().getId());
-        ps.setString(2, e.getNome());
-        ps.setString(3, e.getDescricao());
-        ps.setDate(6, new java.sql.Date(e.getDataFim().getTime()));
-        ps.setString(4, e.getEndereco());
+        ps.setString(1, e.getNome());
+        ps.setString(2, e.getDescricao());
+        ps.setString(3, e.getEndereco());
+        ps.setString(4, e.getPredio().getNome());
         ps.setDate(5, new java.sql.Date(e.getDataInicio().getTime()));
+        ps.setDate(6, new java.sql.Date(e.getDataFim().getTime()));
         ps.setInt(7, Integer.parseInt(e.getId()));
     }
 
@@ -64,7 +65,7 @@ public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
     protected Evento preencher(ResultSet rs) throws SQLException {
         Evento e = new Evento();
         e.setId(rs.getString("id_evento"));
-        e.setPredio( new PredioDAOMySQL().buscar(rs.getInt("id_predio")) );
+        e.setPredio(new Predio(rs.getString("predio")));
         e.setNome(rs.getString("nome_evento"));
         e.setDescricao(rs.getString("descricao_evento"));
         e.setEndereco(rs.getString("endereco"));

@@ -13,7 +13,6 @@ import banco.Registro;
  */
 public class Predio extends Registro {
     
-    private Integer id;
     private String nome;
 
     public Predio() {
@@ -22,25 +21,6 @@ public class Predio extends Registro {
     
     public Predio(String nome) {
         this.nome = nome;
-    }
-    
-    public Predio(Integer id, String nome) {
-        this.id = id;
-        this.nome = nome;
-    }
-    
-    /**
-     * @return the id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     /**
@@ -59,7 +39,7 @@ public class Predio extends Registro {
 
     @Override
     public String toString() {
-        return "Predio{" + "id=" + id + ", nome=" + nome + '}';
+        return "Predio{" + ", nome=" + nome + '}';
     }
 
 }

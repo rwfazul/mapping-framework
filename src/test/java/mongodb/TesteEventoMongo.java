@@ -7,8 +7,6 @@ package mongodb;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,15 +28,13 @@ public class TesteEventoMongo {
     public static void main(String[] args) {        
         Sala s1 = new Sala();
         s1.setNome("354A");
-        s1.setCapacidade(50);
+        s1.setPublicoPrevisto(50);
         Predio p1 = new Predio("CT");
-        s1.setPredio(p1);
  
         Sala s2 = new Sala();
         s2.setNome("361");
-        s2.setCapacidade(30);
+        s2.setPublicoPrevisto(30);
         Predio p2 = new Predio("CT - Anexo A");
-        s2.setPredio(p2);
         
         Palestrante pal1 = new Palestrante("Paulo", 'M', "Mestrado", "Sistemas de Informação", "UFSM");
         Palestrante pal2 = new Palestrante("Joana", 'F', "Doutorado", "Ciência da Computação", "PUC");
@@ -163,7 +159,6 @@ public class TesteEventoMongo {
             System.out.println("\t\tcursoFormação: " + p.getPalestrante().getCursoFormacao());
             System.out.println("\t\tinstituiçãoFormação: " + p.getPalestrante().getInstituicaoFormacao());
             System.out.println("\t\tsala: { nome: " + p.getSala().getNome());
-            System.out.println("\t\tpredio: { nome: " + p.getSala().getPredio().getNome() + "} } } }");
         }
         System.out.println("]");
     }

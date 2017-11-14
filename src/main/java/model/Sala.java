@@ -13,54 +13,16 @@ import banco.Registro;
  */
 public class Sala extends Registro {
     
-    private Integer id;
-    private Predio predio;
     private String nome;
-    private Integer capacidade;
+    private Integer publicoPrevisto;
 
     public Sala() {
         
     }
     
-    public Sala(Predio predio, String nome, Integer capacidade) {
-        this.predio = predio;
+    public Sala(String nome, Integer publicoPrevisto) {
         this.nome = nome;
-        this.capacidade = capacidade;
-    }
-    
-    public Sala(Integer id, Predio predio, String nome, Integer capacidade) {
-        this.id = id;
-        this.predio = predio;
-        this.nome = nome;
-        this.capacidade = capacidade;
-    }
-    
-    /**
-     * @return the id
-     */
-    public Integer getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    /**
-     * @return the predio
-     */
-    public Predio getPredio() {
-        return predio;
-    }
-
-    /**
-     * @param predio the predio to set
-     */
-    public void setPredio(Predio predio) {
-        this.predio = predio;
+        this.publicoPrevisto = publicoPrevisto;
     }
 
     /**
@@ -78,22 +40,22 @@ public class Sala extends Registro {
     }
 
     /**
-     * @return the capacidade
+     * @return the publicoPrevisto
      */
-    public Integer getCapacidade() {
-        return capacidade;
+    public Integer getPublicoPrevisto() {
+        return publicoPrevisto;
     }
 
     /**
-     * @param capacidade the capacidade to set
+     * @param publicoPrevisto the publicoPrevisto to set
      */
-    public void setCapacidade(Integer capacidade) {
-        this.capacidade = capacidade;
+    public void setPublicoPrevisto(Integer publicoPrevisto) {
+        this.publicoPrevisto = publicoPrevisto;
     }
 
     @Override
     public String toString() {
-        return "Sala{" + "id=" + id + ", predio=" + predio + ", nome=" + nome + ", capacidade=" + capacidade + '}';
+        return "Sala{" + ", nome=" + nome + ", publicoPrevisto=" + getPublicoPrevisto() + '}';
     }   
     
 }

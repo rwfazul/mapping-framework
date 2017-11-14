@@ -5,7 +5,6 @@
  */
 package model.conversores;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import model.Evento;
@@ -21,7 +20,6 @@ public class EventoConversor extends Conversor<Evento> {
 
     @Override
     public Document toDocument(Evento e) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Document doc = new Document("nome", e.getNome())
                         .append("descricao", e.getDescricao())
                         .append("endereco", e.getEndereco())

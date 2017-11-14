@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import model.Palestra;
+import model.Sala;
 
 /**
  *
@@ -32,25 +33,27 @@ public class PalestraDAOMySQL extends RegistrosMySQL<Palestra> {
     protected void preencherInsercao(PreparedStatement ps, Palestra p) throws SQLException {
         ps.setInt(1, p.getPalestrante().getId());
         ps.setInt(2, Integer.parseInt(p.getEvento().getId()));
-        ps.setInt(3, p.getSala().getId());
-        ps.setString(4, p.getTitulo());
-        ps.setString(5, p.getAssunto());
-        ps.setString(6, p.getDescricao());
-        ps.setTimestamp(7, new java.sql.Timestamp(p.getInicio().getTime()));
-        ps.setTimestamp(8, new java.sql.Timestamp(p.getFim().getTime()));
+        ps.setString(3, p.getTitulo());
+        ps.setString(4, p.getAssunto());
+        ps.setString(5, p.getDescricao());
+        ps.setString(6, p.getSala().getNome());
+        ps.setInt(7, p.getSala().getPublicoPrevisto());
+        ps.setTimestamp(8, new java.sql.Timestamp(p.getInicio().getTime()));
+        ps.setTimestamp(9, new java.sql.Timestamp(p.getFim().getTime()));
     }
 
     @Override
     protected void preencherAlteracao(PreparedStatement ps, Palestra p) throws SQLException {
         ps.setInt(1, p.getPalestrante().getId());
         ps.setInt(2, Integer.parseInt(p.getEvento().getId()));
-        ps.setInt(3, p.getSala().getId());
-        ps.setString(4, p.getTitulo());
-        ps.setString(5, p.getAssunto());
-        ps.setString(6, p.getDescricao());
-        ps.setTimestamp(7, new java.sql.Timestamp(p.getInicio().getTime()));
-        ps.setTimestamp(8, new java.sql.Timestamp(p.getFim().getTime()));
-        ps.setInt(9, p.getId());
+        ps.setString(3, p.getTitulo());
+        ps.setString(4, p.getAssunto());
+        ps.setString(5, p.getDescricao());
+        ps.setString(6, p.getSala().getNome());
+        ps.setInt(7, p.getSala().getPublicoPrevisto());
+        ps.setTimestamp(8, new java.sql.Timestamp(p.getInicio().getTime()));
+        ps.setTimestamp(9, new java.sql.Timestamp(p.getFim().getTime()));
+        ps.setInt(10, p.getId());
     }
 
     @Override
@@ -69,10 +72,10 @@ public class PalestraDAOMySQL extends RegistrosMySQL<Palestra> {
         p.setId(rs.getInt("id_palestra"));
         p.setPalestrante( new PalestranteDAOMySQL().buscar(rs.getInt("id_palestrante")) );
         // p.setEvento( new EventoDAOMySQL().buscar(rs.getInt("id_evento")) );
-        p.setSala( new SalaDAOMySQL().buscar(rs.getInt("id_sala"))); 
         p.setTitulo(rs.getString("titulo"));
         p.setAssunto(rs.getString("assunto_area"));
         p.setDescricao(rs.getString("descricao_palestra"));
+        p.setSala(new Sala(rs.getString("sala"), rs.getInt("publicoPrevisto"))); 
         p.setInicio(rs.getTimestamp("data_inicio"));
         p.setFim(rs.getTimestamp("data_fim"));
         return p;

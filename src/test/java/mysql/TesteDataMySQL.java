@@ -38,7 +38,6 @@ public class TesteDataMySQL {
         p.setPalestrante(pa);
         
         Sala s = new Sala();
-        s.setId(1);
         p.setSala(s);
         
         

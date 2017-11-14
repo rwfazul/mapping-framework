@@ -17,8 +17,7 @@ public class SalaConversor extends Conversor<Sala>{
     @Override
     public Document toDocument(Sala s) {
         Document doc = new Document("nome", s.getNome())
-                        .append("capacidade", s.getCapacidade())
-                        .append("predio", new PredioConversor().toDocument(s.getPredio()));
+                        .append("publicoPrevisto", s.getPublicoPrevisto());
         return doc;
     }
 
@@ -27,8 +26,7 @@ public class SalaConversor extends Conversor<Sala>{
         Document salaDoc = (Document) doc.get("sala");
         Sala s = new Sala();
         s.setNome((String) salaDoc.get("nome"));
-        s.setCapacidade((Integer) salaDoc.get("capacidade"));
-        s.setPredio(new PredioConversor().toModel(salaDoc));
+        s.setPublicoPrevisto((Integer) salaDoc.get("publicoPrevisto"));
         return s;    
     }
     

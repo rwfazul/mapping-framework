@@ -5,7 +5,6 @@
  */
 package model.conversores;
 
-import java.text.SimpleDateFormat;
 import model.Palestra;
 import org.bson.Document;
 import util.DateUtils;
@@ -18,7 +17,6 @@ public class PalestraConversor extends Conversor<Palestra> {
 
     @Override
     public Document toDocument(Palestra p) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         Document doc = new Document("titulo", p.getTitulo())
                         .append("assunto", p.getAssunto())
                         .append("descricao", p.getDescricao())
