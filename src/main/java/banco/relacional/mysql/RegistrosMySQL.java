@@ -78,18 +78,28 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
         this.sqlBuscaTodos = sqlBuscaTodos;
     }
 
+    /**
+     * @return id do elemento inserido
+     */    
     @Override
-    public void inserir(T t) {
+    public Integer inserir(T t) {
         Connection c = ConexaoMySQL.getConexao();
+        Integer id = null;
         try {
-            PreparedStatement ps = c.prepareStatement(getSqlInsercao());
+            PreparedStatement ps = c.prepareStatement(getSqlInsercao(), PreparedStatement.RETURN_GENERATED_KEYS);
             preencherInsercao(ps, t);
             ps.execute();
+            
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next())
+                id = rs.getInt(1); // pk
+            rs.close();
             ps.close();
             c.close();
         } catch (SQLException ex) {
             Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return id;
     }
 
     @Override

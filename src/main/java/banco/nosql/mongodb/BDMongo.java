@@ -11,7 +11,7 @@ package banco.nosql.mongodb;
  */
 public class BDMongo {
    
-    public static final String URL_CONEXAO = "mongodb://127.0.0.1:27017";
+    public static final String URL_CONEXAO = "mongodb://localhost:27017";
     public static final String DATABASE = "registros";
     public static final String COLLECTION = "eventos";
 

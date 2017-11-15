@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS evento (
     predio               VARCHAR(50)      NOT NULL,
     data_inicio          DATE             NOT NULL,
     data_fim             DATE             NOT NULL,
-    PRIMARY KEY          (id_evento),
+    PRIMARY KEY          (id_evento)
 );
 
 CREATE TABLE IF NOT EXISTS palestrante (
@@ -39,5 +39,5 @@ CREATE TABLE IF NOT EXISTS palestra (
     data_fim             DATETIME         NOT NULL,
     PRIMARY KEY          (id_palestra),
     FOREIGN KEY          (id_palestrante) REFERENCES palestrante (id_palestrante),
-    FOREIGN KEY          (id_evento)      REFERENCES evento      (id_evento),
+    FOREIGN KEY          (id_evento)      REFERENCES evento      (id_evento)
 );

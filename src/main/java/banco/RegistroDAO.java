@@ -14,7 +14,7 @@ import java.util.Collection;
  */
 public interface RegistroDAO<T extends Registro> {
         
-    abstract void inserir(T t);
+    abstract Integer inserir(T t);
     
     abstract void alterar(T t);
     

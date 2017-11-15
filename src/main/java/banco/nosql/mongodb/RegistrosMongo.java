@@ -41,15 +41,15 @@ public abstract class RegistrosMongo<T extends Registro> implements RegistroDAO<
     }
     
     public Collection<Document> buscarDocumento(String chave, String valor) {
-        Collection<Document> documents = new ArrayList<Document>();
-        for (Document cur : collection.find(eq(chave, valor))) 
+        Collection<Document> documents = new ArrayList<>();
+        for (Document cur : collection.find( eq(chave, new ObjectId(valor) ))) 
             documents.add(cur);
        
         return documents;
     }
     
     public Collection<Document> buscarTodosDocumentos() {
-        Collection<Document> documents = new ArrayList<Document>();
+        Collection<Document> documents = new ArrayList<>();
         for (Document cur : collection.find()) 
             documents.add(cur);
         
