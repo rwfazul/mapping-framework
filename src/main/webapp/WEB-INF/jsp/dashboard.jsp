@@ -10,7 +10,7 @@
 
 <div class="container-fluid">    
     <div class="row">
-        <div class="col-md-5 col-md-offset-1">
+        <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-primary">
                 <div class="panel-heading">Evento</div>
                 <div class="panel-body">
@@ -18,18 +18,6 @@
                     <div class="botoes">
                         <a href="eventoServlet" class="btn btn-success">Cadastrar</a>
                         <a href="eventoServlet" class="btn btn-success">Gerenciar</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-5">
-            <div class="panel panel-primary">
-                <div class="panel-heading">Palestra</div>
-                <div class="panel-body">
-                    <p class="text-justify">Aqui você pode cadastrar palestras avulsas, ou seja, sem um evento relacionado.</p>
-                    <div class="botoes">                    
-                        <a href="palestraServlet" class="btn btn-success">Cadastrar</a>
-                        <a href="palestraServlet" class="btn btn-success">Gerenciar</a>
                     </div>
                 </div>
             </div>
