@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mongodb;
+package mysql;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,18 +15,19 @@ import model.Palestra;
 import model.Palestrante;
 import model.Predio;
 import model.Sala;
-import model.dao.mongo.EventoDAOMongo;
+import model.dao.mysql.EventoDAOMySQL;
 import util.DateUtils;
 
 /**
  *
  * @author rhau
  */
-public class TesteEventoMongo {
-    
-    static EventoDAOMongo edao = new EventoDAOMongo();
+public class TesteEventoMySQL {
+ 
+    static EventoDAOMySQL edao = new EventoDAOMySQL();
 
-    public static void main(String[] args) {        
+    
+    public static void main(String[] args) {
         Evento e = cria_evento();
         testeInserir(e);
         // System.out.println("*** OBJETOS QUE FORAM INSERIDOS ***");
@@ -40,32 +41,27 @@ public class TesteEventoMongo {
         p.getSala().setNome("NOVA SALA");
         testeAtualizar(e);
         testeBuscarTodos();
-        e.getPalestras().removeAll(e.getPalestras());
-        System.out.println("VER: " + e.getPalestras());
-        testeAtualizar(e);
-        testeBuscarTodos();
-        testeBuscar(e);
         testeDeletar(e);
         testeBuscarTodos();
     }
     
     public static void testeInserir(Evento e) {
-        System.out.println("\n\nInserindo evento (" +  e + ")...");
+        System.out.println("Inserindo evento (" +  e + ")...");
         edao.inserir(e);
     }
     
     public static void testeAtualizar(Evento e) {
-        System.out.println("Atualizando evento _id=" + e.getId() + "...");
+        System.out.println("Atualizando evento id=" + e.getId() + "...");
         edao.alterar(e);
     }
     
     public static void testeDeletar(Evento e) {
-        System.out.println("Deletando evento _id=" + e.getId() + "...");
+        System.out.println("Deletando evento id=" + e.getId() + "...");
         edao.excluir(e);
     }
     
     public static Evento testeBuscar(Evento e) {
-        System.out.println("Buscando evento _id=" + e.getId() + "...");
+        System.out.println("Buscando evento id=" + e.getId() + "...");
         Evento busca = null;
         for (Evento evento : edao.buscar(e)) {
             busca = evento;
@@ -79,8 +75,8 @@ public class TesteEventoMongo {
         System.out.println("Buscando eventos...");
         for (Evento e : edao.buscarTodos())
             imprime_evento(e);
-    }    
-
+    }  
+    
     private static void imprime_evento(Evento e) {
         System.out.println("\n{\n_id: " + e.getId());
         System.out.println("nome: " + e.getNome());
@@ -107,7 +103,7 @@ public class TesteEventoMongo {
         }
         System.out.println("  ]\n}");
     }
-
+    
     private static Evento cria_evento() {
         Sala s1 = new Sala();
         s1.setNome("354A");
@@ -127,7 +123,7 @@ public class TesteEventoMongo {
         try {
             dateTime = format.parse(data);
         } catch (ParseException ex) {
-            Logger.getLogger(TesteEventoMongo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TesteEventoMySQL.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         Palestra pa1 = new Palestra();
@@ -154,7 +150,7 @@ public class TesteEventoMongo {
         try {
             date = format.parse(data);
         } catch (ParseException ex) {
-            Logger.getLogger(TesteEventoMongo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TesteEventoMySQL.class.getName()).log(Level.SEVERE, null, ex);
         }        
         
         Evento e = new Evento();

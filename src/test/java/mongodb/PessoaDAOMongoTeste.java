@@ -17,9 +17,10 @@ import org.bson.Document;
 public class PessoaDAOMongoTeste extends RegistrosMongo<PessoaMongoTeste> {
    
     @Override
-    public void inserir(PessoaMongoTeste p) {
+    public Integer inserir(PessoaMongoTeste p) {
         Document doc = new PessoaConversorMongoTeste().toDocument(p);
         inserirDocumento(doc);
+        return 1; // sucess
     }
     
     @Override
