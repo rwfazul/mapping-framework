@@ -179,7 +179,7 @@ public class Palestra extends Registro {
 
     @Override
     public String toString() {
-        return "Palestra{" + "id=" + id + ", palestrante=" + palestrante + ", evento=" + evento + ", sala=" + sala + ", titulo=" + titulo + ", assunto=" + assunto + ", descricao=" + descricao + ", inicio=" + inicio + ", fim=" + fim + '}';
-    }    
+        return "Palestra{" + "id=" + id + ", palestrante=" + palestrante + ", sala=" + sala + ", titulo=" + titulo + ", assunto=" + assunto + ", descricao=" + descricao + ", inicio=" + inicio + ", fim=" + fim + '}';
+    }
     
 }

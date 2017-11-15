@@ -39,7 +39,7 @@ public class Predio extends Registro {
 
     @Override
     public String toString() {
-        return "Predio{" + ", nome=" + nome + '}';
+        return "Predio{" + "nome=" + nome + '}';
     }
 
 }

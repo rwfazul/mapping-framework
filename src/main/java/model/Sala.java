@@ -55,7 +55,7 @@ public class Sala extends Registro {
 
     @Override
     public String toString() {
-        return "Sala{" + ", nome=" + nome + ", publicoPrevisto=" + getPublicoPrevisto() + '}';
-    }   
+        return "Sala{" + "nome=" + nome + ", publicoPrevisto=" + publicoPrevisto + '}';
+    }
     
 }

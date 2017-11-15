@@ -5,12 +5,16 @@
  */
 package model.dao.mysql;
 
+import banco.relacional.mysql.ConexaoMySQL;
 import banco.relacional.mysql.RegistrosMySQL;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Evento;
 import model.Palestra;
 import model.Predio;
@@ -22,14 +26,40 @@ import model.Predio;
 public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
 
     public EventoDAOMySQL() {
-        setSqlInsercao("INSERT INTO evento");
-        setSqlAlteracao("UPDATE evento");
+        setSqlInsercao("INSERT INTO evento (nome_evento, descricao_evento, endereco, predio, data_inicio, data_fim) VALUES (?, ?, ?, ?, ?, ?)");
+        setSqlAlteracao("UPDATE evento SET nome_evento = ?, descricao_evento = ?, endereco = ?, predio = ?, data_inicio = ?, data_fim = ? WHERE id_evento = ?");
         setSqlExclusao("DELETE FROM evento WHERE id_evento = ?");
         setSqlBuscaChavePrimaria("SELECT * FROM evento WHERE id_evento = ?");
         setSqlBusca("SELECT * FROM evento WHERE nome_evento = ?");
         setSqlBuscaTodos("SELECT * FROM evento");
     }
 
+    @Override
+    public Integer inserir(Evento e) { 
+        Connection c = ConexaoMySQL.getConexao();
+        try {
+            PreparedStatement ps = c.prepareStatement(getSqlInsercao(), PreparedStatement.RETURN_GENERATED_KEYS);
+            preencherInsercao(ps, e);
+            ps.execute();
+            // recupera id_evento
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next())
+                e.setId(Integer.toString( rs.getInt(1) )); // pk
+            rs.close();
+            ps.close();
+            c.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+        // para cada evento salva as suas palestras
+        PalestraDAOMySQL pdao = new PalestraDAOMySQL();
+        for (Palestra p : e.getPalestras()) {
+            p.setEvento(e);
+            pdao.inserir(p);
+        }
+        return 1; // sucess
+    }
+    
     @Override
     protected void preencherInsercao(PreparedStatement ps, Evento e) throws SQLException {
         ps.setString(1, e.getNome());
@@ -72,10 +102,13 @@ public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
         e.setDataInicio(rs.getDate("data_inicio"));
         e.setDataFim(rs.getDate("data_fim"));
         
-        // Busca palestras pelo id_evento
+        // busca palestras pelo id_evento
         Palestra p = new Palestra();
         p.setEvento(e); 
         e.setPalestras( new PalestraDAOMySQL().buscar(p) );
+        // preencher obj para updates
+        for (Palestra palestra: e.getPalestras())
+            palestra.setEvento(e);
         
         return e;
     }

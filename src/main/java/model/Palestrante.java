@@ -23,6 +23,10 @@ public class Palestrante extends Registro {
     public Palestrante() {
         
     }
+   
+    public Palestrante(Integer id) {
+        this.id = id;
+    }
     
     public Palestrante(String nome, char sexo, String grauAcademico, String cursoFormacao, String instituicaoFormacao) {
         this.nome = nome;

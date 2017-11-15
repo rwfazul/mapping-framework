@@ -20,12 +20,12 @@ import model.Palestrante;
 public class PalestranteDAOMySQL extends RegistrosMySQL<Palestrante> {
     
     public PalestranteDAOMySQL() {
-        setSqlInsercao("");
-        setSqlAlteracao("");
-        setSqlExclusao("");
-        setSqlBuscaChavePrimaria("");
-        setSqlBusca("");
-        setSqlBuscaTodos("");
+        setSqlInsercao("INSERT INTO palestrante (nome_palestrante, sexo, grau_academico, nome_curso, instituicao) VALUES (?, ?, ?, ?, ?)");
+        setSqlAlteracao("UPDATE palestrante SET nome_palestrante = ?, sexo = ?, grau_academico = ?, nome_curso = ?, instituicao = ? WHERE id_palestrante = ?");
+        setSqlExclusao("DELETE FROM palestrante");
+        setSqlBuscaChavePrimaria("SELECT * FROM palestrante WHERE id_palestrante = ?");
+        setSqlBusca("SELECT * FROM palestrante WHERE nome_palestrante = ?");
+        setSqlBuscaTodos("SELECT * FROM palestrante");
     }
 
     @Override
@@ -44,7 +44,7 @@ public class PalestranteDAOMySQL extends RegistrosMySQL<Palestrante> {
         ps.setString(3, p.getGrauAcademico());
         ps.setString(4, p.getCursoFormacao());
         ps.setString(5, p.getInstituicaoFormacao());    
-        ps.setInt(1, p.getId());
+        ps.setInt(6, p.getId());
     }
 
     @Override

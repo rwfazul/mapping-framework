@@ -5,12 +5,16 @@
  */
 package model.dao.mysql;
 
+import banco.relacional.mysql.ConexaoMySQL;
 import banco.relacional.mysql.RegistrosMySQL;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Palestra;
 import model.Sala;
 
@@ -21,12 +25,33 @@ import model.Sala;
 public class PalestraDAOMySQL extends RegistrosMySQL<Palestra> {
 
     public PalestraDAOMySQL() {
-        setSqlInsercao("INSERT INTO palestra (id_palestrante, id_evento, id_sala, titulo, assunto_area, descricao_palestra, data_inicio, data_fim) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-        setSqlAlteracao("UPDATE palestra set id_evento = ?, id_sala = ?, titulo = ?, assunto_area = ?, descricao_palestra = ?, data_inicio = ?, data_fim = ? WHERE id_palestra = ?");
+        setSqlInsercao("INSERT INTO palestra (id_palestrante, id_evento, titulo, assunto_area, descricao_palestra, sala, publico_previsto, data_inicio, data_fim) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        setSqlAlteracao("UPDATE palestra set id_palestrante = ?, id_evento = ?, titulo = ?, assunto_area = ?, descricao_palestra = ?, sala = ?, publico_previsto = ?, data_inicio = ?, data_fim = ? WHERE id_palestra = ?");
         setSqlExclusao("DELETE FROM palestra WHERE id_palestra = ?");
         setSqlBuscaChavePrimaria("SELECT * FROM palestra WHERE id_palestra = ?");
         setSqlBusca("SELECT * FROM palestra WHERE id_evento = ?"); 
         setSqlBuscaTodos("SELECT * FROM palestra");
+    }
+    
+    @Override
+    public Integer inserir(Palestra p) {
+        Connection c = ConexaoMySQL.getConexao();
+        try {           
+            // realiza a insercao do palestrante
+            PalestranteDAOMySQL pdao = new PalestranteDAOMySQL();
+            // recupera id_palestrante
+            Integer id_palestrante = pdao.inserir(p.getPalestrante());
+            p.getPalestrante().setId(id_palestrante);
+            // realiza a insercao da palestra
+            PreparedStatement ps = c.prepareStatement(getSqlInsercao());
+            preencherInsercao(ps, p);
+            ps.execute();
+            ps.close();
+            c.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(PalestraDAOMySQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 1; // sucess
     }
     
     @Override
@@ -75,7 +100,7 @@ public class PalestraDAOMySQL extends RegistrosMySQL<Palestra> {
         p.setTitulo(rs.getString("titulo"));
         p.setAssunto(rs.getString("assunto_area"));
         p.setDescricao(rs.getString("descricao_palestra"));
-        p.setSala(new Sala(rs.getString("sala"), rs.getInt("publicoPrevisto"))); 
+        p.setSala(new Sala(rs.getString("sala"), rs.getInt("publico_previsto"))); 
         p.setInicio(rs.getTimestamp("data_inicio"));
         p.setFim(rs.getTimestamp("data_fim"));
         return p;

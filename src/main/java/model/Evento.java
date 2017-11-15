@@ -29,6 +29,10 @@ public class Evento extends Registro {
         
     }
 
+    public Evento(String id) {
+        this.id = id;
+    }
+    
     public Evento(Predio predio, String nome, String descricao, String endereco, Date dataInicio, Date dataFim) {
         this.predio = predio;
         this.nome = nome;
@@ -47,7 +51,7 @@ public class Evento extends Registro {
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
     }
-    
+
     /**
      * @return the id
      */
@@ -164,5 +168,5 @@ public class Evento extends Registro {
     public String toString() {
         return "Evento{" + "id=" + id + ", predio=" + predio + ", nome=" + nome + ", descricao=" + descricao + ", endereco=" + endereco + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", palestras=" + palestras + '}';
     }
-    
+
 }

@@ -19,9 +19,11 @@ import org.bson.Document;
 public class EventoDAOMongo extends RegistrosMongo<Evento> {
 
     @Override
-    public void inserir(Evento e) {
+    public Integer inserir(Evento e) {
         Document doc = new EventoConversor().toDocument(e);
         inserirDocumento(doc);
+        e.setId(doc.getObjectId("_id").toString());
+        return 1; // sucess
     }
 
     @Override
@@ -39,7 +41,7 @@ public class EventoDAOMongo extends RegistrosMongo<Evento> {
 
     @Override
     public Collection<Evento> buscar(Evento e) {
-        Collection<Document> documentos = buscarDocumento("nome", e.getNome()); 
+        Collection<Document> documentos = buscarDocumento("_id", e.getId()); 
         
         Collection<Evento> eventos = new ArrayList<>();
         for (Document doc : documentos) {
