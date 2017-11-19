@@ -25,7 +25,7 @@
     </ul>
     <ul class="list-unstyled CTAs" >
         <li>
-            <a href="https://github.com/isasakis" class="article" title="GitHub" target="_blank">
+            <a href="https://github.com/isasakis" class="article" title="GitHub @isasakis" target="_blank">
                 <div class="text-center">
                     <span class="fa-stack fa-lg">
                         <i class="fa fa-github fa-stack-2x fa-icon"></i>
@@ -34,7 +34,7 @@
             </a>
         </li>
         <li>
-            <a href="https://github.com/rwfazul"article" title="GitHub" target="_blank">
+            <a href="https://github.com/rwfazul" class="article" title="GitHub @rwfazul" target="_blank">
                 <div class="text-center">                    
                     <span class="fa-stack fa-lg">
                         <i class="fa fa-github fa-stack-2x fa-icon"></i>
