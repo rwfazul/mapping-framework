@@ -1,3 +1,4 @@
+DROP DATABASE IF EXISTS pgbd;
 CREATE DATABASE IF NOT EXISTS pgbd;
 USE pgbd;
 
@@ -34,9 +35,10 @@ CREATE TABLE IF NOT EXISTS palestra (
     assunto_area         VARCHAR(255)     NOT NULL,
     descricao_palestra   VARCHAR(255)     NULL,
     sala                 VARCHAR(50)      NOT NULL,
-    publico_previsto     INTEGER	  NULL,
-    data_inicio          DATETIME         NOT NULL,
-    data_fim             DATETIME         NOT NULL,
+    publico_previsto     INTEGER	      NULL,
+    data_palestra        DATE             NOT NULL,
+    hora_inicio          TIME         	  NOT NULL,
+    hora_fim             TIME             NOT NULL,
     PRIMARY KEY          (id_palestra),
     FOREIGN KEY          (id_palestrante) REFERENCES palestrante (id_palestrante),
     FOREIGN KEY          (id_evento)      REFERENCES evento      (id_evento)

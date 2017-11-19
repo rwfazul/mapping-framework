@@ -77,11 +77,11 @@ public class EventoServlet extends HttpServlet {
         Integer predio = Integer.parseInt(request.getParameter("predio"));
         // Integer sala = Integer.parseInt(request.getParameter("sala"));
         Integer sala = 500;
-        Evento e = new Evento(nome, descricao, data_inicio, data_fim, endereco, predio, sala);
+       // Evento e = new Evento(nome, descricao, data_inicio, data_fim, endereco, predio, sala);
 
         //EventoDAOMongo edao = new EventoDAOMongo();
         RegistroDAO edao = new EventoDAOMySQL();
-        edao.inserir(e);      
+        //edao.inserir(e);      
         processRequest(request, response);
     }
 
