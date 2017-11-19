@@ -23,30 +23,35 @@ import model.dao.mysql.PalestraDAOMySQL;
  */
 public class TesteDataMySQL {
     
-    public static void main(String[] args) {       
+    public static void main(String[] args) {  
+        System.out.println();
         Palestra p = new Palestra();
         p.setTitulo("Titulo");
         p.setDescricao("descricao");
         p.setAssunto("assunto");
+        p.setPalestrante(new Palestrante("Paulo", 'M', "Mestrado", "Sistemas de Informação", "UFSM"));
         
         Evento e = new Evento();
-        e.setId("1");
+        e.setId("1"); // ja deve estar inserido
         p.setEvento(e);
-        
-        Palestrante pa = new Palestrante();
-        pa.setId(1);
-        p.setPalestrante(pa);
-        
-        Sala s = new Sala();
+       
+        Sala s = new Sala("335", 12);
         p.setSala(s);
         
-        
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        SimpleDateFormat formatData = new SimpleDateFormat("dd-MM-yyyy");
         try {
-            Date inicio = format.parse("31-01-2016 20:00:00");
-            Date fim = format.parse("31-12-1993 12:30:00");
-            p.setInicio(inicio);
-            p.setFim(fim);
+            Date data = formatData.parse("12-05-1997");
+            p.setData(data);
+        } catch (ParseException ex) {
+            Logger.getLogger(TesteDataMySQL.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        try {
+            Date inicio = format.parse("20:00");
+            Date fim = format.parse("21:30");
+            p.setHoraInicio(inicio);
+            p.setHoraFim(fim);
         } catch (ParseException ex) {
             Logger.getLogger(TesteDataMySQL.class.getName()).log(Level.SEVERE, null, ex);
         }

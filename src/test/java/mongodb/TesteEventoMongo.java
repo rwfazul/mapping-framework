@@ -41,7 +41,6 @@ public class TesteEventoMongo {
         testeAtualizar(e);
         testeBuscarTodos();
         e.getPalestras().removeAll(e.getPalestras());
-        System.out.println("VER: " + e.getPalestras());
         testeAtualizar(e);
         testeBuscarTodos();
         testeBuscar(e);
@@ -84,7 +83,7 @@ public class TesteEventoMongo {
     private static void imprime_evento(Evento e) {
         System.out.println("\n{\n_id: " + e.getId());
         System.out.println("nome: " + e.getNome());
-        System.out.println("descricão: " + e.getDescricao());
+        System.out.println("descrição: " + e.getDescricao());
         System.out.println("endereço: " + e.getEndereco());
         System.out.println("dataInicio: " + DateUtils.toString(e.getDataInicio(), "dd-MM-yyyy"));
         System.out.println("dataFim: " + DateUtils.toString(e.getDataFim(), "dd-MM-yyyy"));
@@ -93,9 +92,10 @@ public class TesteEventoMongo {
         for (Palestra p : e.getPalestras()) {
             System.out.println("\t{\n\t  titulo: " + p.getTitulo());
             System.out.println("\t  assunto: " + p.getAssunto());
-            System.out.println("\t  descricao: " + p.getDescricao());
-            System.out.println("\t  inicio: " + DateUtils.toString(p.getInicio(), "dd-MM-yyyy HH:mm"));
-            System.out.println("\t  fim: " + DateUtils.toString(p.getFim(), "dd-MM-yyyy HH:mm"));
+            System.out.println("\t  descrição: " + p.getDescricao());
+            System.out.println("\t  data: " + DateUtils.toString(p.getData(), "dd-MM-yyyy"));
+            System.out.println("\t  inicio: " + DateUtils.toString(p.getHoraInicio(), "HH:mm"));
+            System.out.println("\t  fim: " + DateUtils.toString(p.getHoraFim(), "HH:mm"));
             System.out.println("\t  palestrante: {");
             System.out.println("\t\tnome: " + p.getPalestrante().getNome());
             System.out.println("\t\tsexo: " + p.getPalestrante().getSexo());
@@ -121,21 +121,32 @@ public class TesteEventoMongo {
         Palestrante pal1 = new Palestrante("Paulo", 'M', "Mestrado", "Sistemas de Informação", "UFSM");
         Palestrante pal2 = new Palestrante("Joana", 'F', "Doutorado", "Ciência da Computação", "PUC");
         
-        String data = "02-01-2017 20:00";
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-        Date dateTime = null;
+        String data = "02-01-2017";
+        SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        Date datePalestra = null;
         try {
-            dateTime = format.parse(data);
+            datePalestra = format.parse(data);
         } catch (ParseException ex) {
             Logger.getLogger(TesteEventoMongo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        String hora = "20:00";
+        String hora2 = "21:30";
+        SimpleDateFormat formatHora = new SimpleDateFormat("HH:mm");
+        Date horaPalestra = null;
+        Date horaPalestraDois = null;
+        try {
+            horaPalestra = formatHora.parse(hora);
+            horaPalestraDois = formatHora.parse(hora2);
+        } catch (ParseException ex) {
+            Logger.getLogger(TesteEventoMongo.class.getName()).log(Level.SEVERE, null, ex);
+        }  
         Palestra pa1 = new Palestra();
         pa1.setTitulo("Surpresas do big data");
         pa1.setAssunto("big data");
         pa1.setDescricao("nessa palestra bla bla");
-        pa1.setInicio(dateTime);
-        pa1.setFim(dateTime);
+        pa1.setData(datePalestra);
+        pa1.setHoraInicio(horaPalestra);
+        pa1.setHoraFim(horaPalestraDois);
         pa1.setPalestrante(pal1);
         pa1.setSala(s1);
 
@@ -143,13 +154,13 @@ public class TesteEventoMongo {
         pa2.setTitulo("Surpresas do machine learning");
         pa2.setAssunto("machine learning");
         pa2.setDescricao("esta atividade sera bla bla");
-        pa2.setInicio(dateTime);
-        pa2.setFim(dateTime);
+        pa2.setData(datePalestra);
+        pa2.setHoraInicio(horaPalestra);
+        pa2.setHoraFim(horaPalestraDois);
         pa2.setPalestrante(pal2);
         pa2.setSala(s2);
         
         data = "25-01-2016";
-        format = new SimpleDateFormat("dd-MM-yyyy");
         Date date = null;
         try {
             date = format.parse(data);

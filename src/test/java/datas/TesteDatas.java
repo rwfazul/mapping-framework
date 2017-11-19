@@ -5,6 +5,7 @@
  */
 package datas;
 
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -50,6 +51,16 @@ public class TesteDatas {
         try {
             Date date3 = formatter3.parse("12-11-2012 14:54"); // mysql datetime format
             System.out.println(formatter2.format(date3));
+        } catch (ParseException ex) {
+            Logger.getLogger(TesteDatas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        // TIME
+        SimpleDateFormat formatter4 = new SimpleDateFormat("HH:mm");
+        try {
+            Date time = formatter4.parse("14:54"); // mysql datetime format
+            System.out.println(formatter4.format(time));
+            System.out.println(new Time(time.getTime()));
         } catch (ParseException ex) {
             Logger.getLogger(TesteDatas.class.getName()).log(Level.SEVERE, null, ex);
         }
