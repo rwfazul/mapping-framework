@@ -17,9 +17,13 @@ public class Sala extends Registro {
     private Integer publicoPrevisto;
 
     public Sala() {
-        
+        this.publicoPrevisto = 0;
     }
     
+    public Sala(String nome) {
+        this.nome = nome;
+    }
+  
     public Sala(String nome, Integer publicoPrevisto) {
         this.nome = nome;
         this.publicoPrevisto = publicoPrevisto;

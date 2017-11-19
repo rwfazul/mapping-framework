@@ -26,7 +26,7 @@ public class Evento extends Registro {
     private Collection<Palestra> palestras = new ArrayList<>(); // referencia para criar obj mongo
 
     public Evento() {
-        
+        this.descricao = "";
     }
 
     public Evento(String id) {

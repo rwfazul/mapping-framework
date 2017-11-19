@@ -21,25 +21,27 @@ public class Palestra extends Registro {
     private String titulo;
     private String assunto;
     private String descricao;
-    private Date inicio;
-    private Date fim;
+    private Date data;
+    private Date horaInicio;
+    private Date horaFim;
 
     public Palestra() {
-        
+        this.descricao = "";
     }
 
-    public Palestra(Palestrante palestrante, Evento evento, Sala sala, String titulo, String assunto, String descricao, Date inicio, Date fim) {
+    public Palestra(Palestrante palestrante, Evento evento, Sala sala, String titulo, String assunto, String descricao, Date data, Date horaInicio, Date horaFim) {
         this.palestrante = palestrante;
         this.evento = evento;
         this.sala = sala;
         this.titulo = titulo;
         this.assunto = assunto;
         this.descricao = descricao;
-        this.inicio = inicio;
-        this.fim = fim;
+        this.data = data;
+        this.horaInicio = horaInicio;
+        this.horaFim = horaFim;
     }
 
-    public Palestra(Integer id, Palestrante palestrante, Evento evento, Sala sala, String titulo, String assunto, String descricao, Date inicio, Date fim) {
+    public Palestra(Integer id, Palestrante palestrante, Evento evento, Sala sala, String titulo, String assunto, String descricao, Date data, Date horaInicio, Date horaFim) {
         this.id = id;
         this.palestrante = palestrante;
         this.evento = evento;
@@ -47,8 +49,9 @@ public class Palestra extends Registro {
         this.titulo = titulo;
         this.assunto = assunto;
         this.descricao = descricao;
-        this.inicio = inicio;
-        this.fim = fim;
+        this.data = data;
+        this.horaInicio = horaInicio;
+        this.horaFim = horaFim;
     }
     
     /**
@@ -150,36 +153,50 @@ public class Palestra extends Registro {
     }
 
     /**
-     * @return the inicio
+     * @return the data
      */
-    public Date getInicio() {
-        return inicio;
+    public Date getData() {
+        return data;
     }
 
     /**
-     * @param inicio the inicio to set
+     * @param data the data to set
      */
-    public void setInicio(Date inicio) {
-        this.inicio = inicio;
+    public void setData(Date data) {
+        this.data = data;
+    }
+    
+    /**
+     * @return the horaInicio
+     */
+    public Date getHoraInicio() {
+        return horaInicio;
     }
 
     /**
-     * @return the fim
+     * @param horaInicio the horaInicio to set
      */
-    public Date getFim() {
-        return fim;
+    public void setHoraInicio(Date horaInicio) {
+        this.horaInicio = horaInicio;
     }
 
     /**
-     * @param fim the fim to set
+     * @return the horaFim
      */
-    public void setFim(Date fim) {
-        this.fim = fim;
+    public Date getHoraFim() {
+        return horaFim;
+    }
+
+    /**
+     * @param horaFim the horaFim to set
+     */
+    public void setHoraFim(Date horaFim) {
+        this.horaFim = horaFim;
     }
 
     @Override
     public String toString() {
-        return "Palestra{" + "id=" + id + ", palestrante=" + palestrante + ", sala=" + sala + ", titulo=" + titulo + ", assunto=" + assunto + ", descricao=" + descricao + ", inicio=" + inicio + ", fim=" + fim + '}';
+        return "Palestra{" + "id=" + id + ", palestrante=" + palestrante + ", evento=" + evento + ", sala=" + sala + ", titulo=" + titulo + ", assunto=" + assunto + ", descricao=" + descricao + ", data=" + getData() + ", horaInicio=" + horaInicio + ", horaFim=" + horaFim + '}';
     }
-    
+
 }
