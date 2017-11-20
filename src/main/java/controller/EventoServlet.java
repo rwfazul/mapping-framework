@@ -14,9 +14,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.parsers.DocumentBuilder;
 import model.Evento;
+import model.conversores.EventoConversor;
 import model.dao.mongo.EventoDAOMongo;
 import model.dao.mysql.EventoDAOMySQL;
+import org.bson.Document;
 
 /**
  *
@@ -69,19 +72,11 @@ public class EventoServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String nome = request.getParameter("nome");
-        String descricao = request.getParameter("descricao");
-        LocalDate data_inicio = LocalDate.parse(request.getParameter("data_inicio"));
-        LocalDate data_fim = LocalDate.parse(request.getParameter("data_fim"));
-        String endereco = request.getParameter("endereco");
-        Integer predio = Integer.parseInt(request.getParameter("predio"));
-        // Integer sala = Integer.parseInt(request.getParameter("sala"));
-        Integer sala = 500;
-       // Evento e = new Evento(nome, descricao, data_inicio, data_fim, endereco, predio, sala);
-
-        //EventoDAOMongo edao = new EventoDAOMongo();
-        RegistroDAO edao = new EventoDAOMySQL();
-        //edao.inserir(e);      
+        Document doc = Document.parse( request.getParameter("eventoJson")  );
+        Evento e = new EventoConversor().toModel(doc);
+        
+        String pagina = "/WEB-INF/jsp/dashboard.jsp";      
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
         processRequest(request, response);
     }
 

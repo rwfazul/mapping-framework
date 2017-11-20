@@ -8,7 +8,7 @@ $(function() {
         var descricao   = $("#form-evento textarea[name='descricao']").val();
         var inicio      = $("#form-evento input[name='inicio']").val();
         var fim         = $("#form-evento input[name='fim']").val();
-        var endereco    = $("#form-local select[name='enderecoSel]'").val();
+        var endereco    = $("#form-local select[name='endereco']").val();
         var nome_predio = $("#form-local [name='predio']").val(); 
         var predio      = new Predio(nome_predio);
         var evento      = new Evento(nome, descricao, endereco, inicio, fim, predio, palestras);
@@ -18,7 +18,13 @@ $(function() {
     
         // formato fica = ao json vindo do mongo, entao da pra usar a funcao EventoConversor.toModel(eventoDocument)
         // tem uns campos pra corrigir no back
-        
+   
+        $.post({
+            url: 'eventoServlet',
+            type: "POST",
+            data: {eventoJson: JSON.stringify(evento)},
+            dataType : 'json'
+        }); 
     });
     
 });

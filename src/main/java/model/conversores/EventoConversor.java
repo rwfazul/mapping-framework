@@ -23,8 +23,8 @@ public class EventoConversor extends Conversor<Evento> {
         Document doc = new Document("nome", e.getNome())
                         .append("descricao", e.getDescricao())
                         .append("endereco", e.getEndereco())
-                        .append("dataInicio", DateUtils.toString(e.getDataInicio(), "yyyy-MM-dd"))
-                        .append("dataFim", DateUtils.toString(e.getDataFim(), "yyyy-MM-dd"))
+                        .append("dataInicio", DateUtils.toString(e.getDataInicio(), "dd/MM/yyyy"))
+                        .append("dataFim", DateUtils.toString(e.getDataFim(), "dd/MM/yyyy"))
                         .append("predio", new PredioConversor().toDocument(e.getPredio()));
         Collection<Document> documents = new ArrayList<>();
         for (Palestra p : e.getPalestras()) 
@@ -36,12 +36,13 @@ public class EventoConversor extends Conversor<Evento> {
     @Override
     public Evento toModel(Document doc) { 
         Evento e = new Evento();
-        e.setId(doc.get("_id").toString());
+        if (doc.get("_id") != null)
+            e.setId(doc.get("_id").toString());
         e.setNome((String) doc.get("nome"));
         e.setDescricao((String) doc.get("descricao"));
         e.setEndereco((String) doc.get("endereco"));
-        e.setDataInicio(DateUtils.toDate((String) doc.get("dataInicio"), "yyyy-MM-dd"));
-        e.setDataFim(DateUtils.toDate((String) doc.get("dataFim"), "yyyy-MM-dd"));
+        e.setDataInicio(DateUtils.toDate((String) doc.get("dataInicio"), "dd/MM/yyyy"));
+        e.setDataFim(DateUtils.toDate((String) doc.get("dataFim"), "dd/MM/yyyy"));
         e.setPredio(new PredioConversor().toModel(doc));
         for (Document d : (Collection<Document>) doc.get("palestras")) 
             e.getPalestras().add(new PalestraConversor().toModel(d));

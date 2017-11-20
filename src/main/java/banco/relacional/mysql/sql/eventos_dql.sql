@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS palestra (
     assunto_area         VARCHAR(255)     NOT NULL,
     descricao_palestra   VARCHAR(255)     NULL,
     sala                 VARCHAR(50)      NOT NULL,
-    publico_previsto     INTEGER	      NULL,
+    publico_previsto     INTEGER          NULL,
     data_palestra        DATE             NOT NULL,
     hora_inicio          TIME         	  NOT NULL,
     hora_fim             TIME             NOT NULL,

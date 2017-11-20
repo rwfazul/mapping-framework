@@ -19,7 +19,7 @@
                     <form id="form-local">
                         <div class="form-group">
                             <label for="enderecoSel">Endereço</label>
-                            <select id="enderecoSel" name="enderecoSel" class="form-control" required>
+                            <select id="enderecoSel" name="endereco" class="form-control" required>
                                 <option value="" selected disabled>Escolha o endereço</option>
                                 <option value="Av. Roraima, 1000 - Camobi">Campus</option>
                                 <option value="R. Floriano Peixoto, 1184 - Centro">Antiga Reitoria</option>
