@@ -12,19 +12,14 @@ $(function() {
         var nome_predio = $("#form-local [name='predio']").val(); 
         var predio      = new Predio(nome_predio);
         var evento      = new Evento(nome, descricao, endereco, inicio, fim, predio, palestras);
-        
-        console.log(JSON.stringify(evento));
-        // ajax post     json > servlet
-    
-        // formato fica = ao json vindo do mongo, entao da pra usar a funcao EventoConversor.toModel(eventoDocument)
-        // tem uns campos pra corrigir no back
-   
+       
         $.post({
             url: 'eventoServlet',
-            type: "POST",
-            data: {eventoJson: JSON.stringify(evento)},
-            dataType : 'json'
-        }); 
+            data: { eventoJson: JSON.stringify(evento) },
+            success: function(data) {
+                location = JSON.parse(data).url;
+            }
+        });       
     });
     
 });

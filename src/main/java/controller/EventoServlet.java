@@ -6,7 +6,9 @@
 package controller;
 
 import banco.RegistroDAO;
-import java.io.IOException;;
+import com.mysql.cj.x.json.JsonString;
+import java.io.IOException;import java.io.PrintWriter;
+;
 import java.time.LocalDate;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -75,9 +77,11 @@ public class EventoServlet extends HttpServlet {
         Document doc = Document.parse( request.getParameter("eventoJson")  );
         Evento e = new EventoConversor().toModel(doc);
         
-        String pagina = "/WEB-INF/jsp/dashboard.jsp";      
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
-        processRequest(request, response);
+        new DBConfig().getRegistroDAO().inserir(e);
+        
+        PrintWriter out = response.getWriter();
+        out.print( "{\"url\": \"index.jsp\"}" );
+        out.flush();
     }
 
     /**
