@@ -13,12 +13,12 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="eventoServlet?action=list">
                 <i class="glyphicon glyphicon-briefcase"></i> Eventos
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="palestraServlet">
                 <i class="glyphicon glyphicon-duplicate"></i> Palestras
             </a>
         </li>

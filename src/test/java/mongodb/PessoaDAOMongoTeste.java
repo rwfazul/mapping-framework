@@ -61,5 +61,10 @@ public class PessoaDAOMongoTeste extends RegistrosMongo<PessoaMongoTeste> {
         
         return pessoas;
     }
+
+    @Override
+    public PessoaMongoTeste buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

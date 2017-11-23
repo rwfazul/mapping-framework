@@ -151,7 +151,8 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
         return registros;
     }
     
-    public T buscar(Integer id) {
+    @Override
+    public T buscar(int id) {
         Connection c = ConexaoMySQL.getConexao();
         T registro = null;
         try {

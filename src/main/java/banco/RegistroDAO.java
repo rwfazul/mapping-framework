@@ -22,6 +22,8 @@ public interface RegistroDAO<T extends Registro> {
     
     abstract Collection<T> buscar(T t);
     
+    abstract T buscar(int id);
+    
     abstract Collection<T> buscarTodos();
     
 }

@@ -16,8 +16,8 @@
                 <div class="panel-body">
                     <p class="text-justify">Aqui você pode cadastrar um evento e então adicionar palestras a seu evento.</p>
                     <div class="botoes">
-                        <a href="eventoServlet" class="btn btn-success">Cadastrar</a>
-                        <a href="eventoServlet" class="btn btn-success">Gerenciar</a>
+                        <a href="eventoServlet?action=insert" class="btn btn-success">Cadastrar</a>
+                        <a href="eventoServlet?action=list" class="btn btn-success">Gerenciar</a>
                     </div>
                 </div>
             </div>

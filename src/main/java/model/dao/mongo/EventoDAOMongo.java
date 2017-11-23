@@ -64,5 +64,10 @@ public class EventoDAOMongo extends RegistrosMongo<Evento> {
 
         return eventos;    
     }
+
+    @Override
+    public Evento buscar(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

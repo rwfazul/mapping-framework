@@ -98,7 +98,7 @@ public class PalestraDAOMySQL extends RegistrosMySQL<Palestra> {
         Palestra p = new Palestra();
         p.setId(rs.getInt("id_palestra"));
         p.setPalestrante( new PalestranteDAOMySQL().buscar(rs.getInt("id_palestrante")) );
-        // p.setEvento( new EventoDAOMySQL().buscar(rs.getInt("id_evento")) );
+        //p.setEvento( new EventoDAOMySQL().buscar(rs.getInt("id_evento")) );
         p.setTitulo(rs.getString("titulo"));
         p.setAssunto(rs.getString("assunto_area"));
         p.setDescricao(rs.getString("descricao_palestra"));
