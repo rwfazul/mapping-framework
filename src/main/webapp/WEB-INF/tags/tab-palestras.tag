@@ -5,6 +5,8 @@
 --%>
 
 <%@tag description="aba palestras" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@attribute name="titulo"%>
 
@@ -26,3 +28,4 @@
 </div>
 
 <jsp:include page="/WEB-INF/jsp/modalPalestra.jsp" />
+<jsp:include page="/WEB-INF/jsp/modalVisualizacao.jsp" />

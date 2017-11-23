@@ -12,12 +12,13 @@
 <%@attribute name="name" required="true"%>
 <%@attribute name="label" required="true"%>
 <%@attribute name="placeholder" required="true"%>
+<%@attribute name="value" required="false"%>
 
 <%-- any content can be specified here e.g.: --%>
 <div class="form-group">
     <label for="${id}">${label}</label>
     <div class="input-group date ${tipo}pickercustom">
-        <input type='text' id="${id}" name="${name}" placeholder="${placeholder}" class="form-control ${tipo}input" required />
+        <input type='text' id="${id}" name="${name}" placeholder="${placeholder}" class="form-control ${tipo}input" value="${value}" required />
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
         </span>

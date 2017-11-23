@@ -11,9 +11,10 @@
 <%@attribute name="name" required="true"%>
 <%@attribute name="label" required="true"%>
 <%@attribute name="placeholder" required="true"%>
+<%@attribute name="value" required="false"%>
 
 <%-- any content can be specified here e.g.: --%>
 <div class="form-group">
     <label for="${id}">${label}</label>
-    <textarea id="${id}" name="${name}" class="form-control" placeholder="${placeholder}"></textarea>
+    <textarea id="${id}" name="${name}" class="form-control" placeholder="${placeholder}">${value}</textarea>
 </div>  

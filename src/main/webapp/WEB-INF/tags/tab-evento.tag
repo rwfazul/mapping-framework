@@ -4,8 +4,10 @@
     Author     : rhau
 --%>
 
-<%@taglib tagdir="/WEB-INF/tags" prefix="t" %>  
 <%@tag description="aba evento" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib tagdir="/WEB-INF/tags" prefix="t" %>  
 
 <%@attribute name="titulo"%>
 
@@ -18,10 +20,12 @@
                 <div class="panel-heading">Sobre o evento</div>
                 <div class="panel-body">
                     <form id="form-evento">
-                        <t:input-text type="text" id="evento_nome" name="nome" label="Nome" placeholder="Digite o nome do evento"></t:input-text>
-                        <t:text-area id="evento_descricao" name="descricao" label="Descrição" placeholder="Descreva o evento"></t:text-area>
-                        <t:input-date tipo="date" id="evento_inicio" name="inicio" label="Data inicio" placeholder="Selecione a data inicial do evento" ></t:input-date>
-                        <t:input-date tipo="date" id="evento_fim" name="fim" label="Data fim" placeholder="Selecione a data final do evento" ></t:input-date>
+                        <t:input-text type="text" id="evento_nome" name="nome" label="Nome" placeholder="Digite o nome do evento" value="${eventoUpdate.nome}"></t:input-text>
+                        <t:text-area id="evento_descricao" name="descricao" label="Descrição" placeholder="Descreva o evento" value="${eventoUpdate.descricao}"></t:text-area>
+                        <fmt:formatDate pattern="dd/MM/yyyy" value="${eventoUpdate.dataInicio}" var="dataInicio" />  
+                        <fmt:formatDate pattern="dd/MM/yyyy" value="${eventoUpdate.dataFim}" var="dataFim"/>              
+                        <t:input-date tipo="date" id="evento_inicio" name="inicio" label="Data inicio" placeholder="Selecione a data inicial do evento" value="${dataInicio}"></t:input-date>
+                        <t:input-date tipo="date" id="evento_fim" name="fim" label="Data fim" placeholder="Selecione a data final do evento" value="${dataFim}"></t:input-date>
                         <input type="submit" class="hidden" />
                     </form>
                 </div>

@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div class="container-fluid">
@@ -8,30 +9,34 @@
             <thead>
                 <tr>
                     <th>Nome</th>
-                    <th>Descrição</th>
-                    <th>Endereço</th>
                     <th>Prédio</th>
                     <th>Início</th>
-                    <th>Fim</th>
-                    <th>Ação</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach var="evento" items="${eventos}">
                     <tr>
                         <td>${evento.nome}</td>
-                        <td>${evento.descricao}</td>
-                        <td>${evento.endereco}</td>
                         <td>${evento.predio.nome}</td>
-                        <td>${evento.dataInicio}</td>
-                        <td>${evento.dataFim}</td>
-                        <td><div class="col-md-6"><a href="palestraServlet?action=list&id_evento=${evento.id}" class="btn btn-info glyphicon glyphicon-duplicate"> Palestras</a></div>
-                            <div class="col-md-3"><a href="eventoServlet?action=update&id_evento=${evento.id}" class="btn btn-warning glyphicon glyphicon-pencil"></a></div>
-                            <div class="col-md-3"><a href="eventoServlet?action=delete&id_evento=${evento.id}" class="btn btn-danger glyphicon glyphicon-trash"></a></div>
+                        <td><fmt:formatDate pattern="dd/MM/yyyy" value="${evento.dataInicio}" /></td>
+                        <td>
+                            <a href="palestraServlet?action=list&id_evento=${evento.id}" class="btn btn-info"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
+                            <a href="eventoServlet?action=update&id_evento=${evento.id}" class="btn btn-warning"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></a>
+                            <a href="eventoServlet?action=delete&id_evento=${evento.id}" class="btn btn-danger"><i class=" glyphicon glyphicon-trash" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 </c:forEach>
             </tbody>
         </table>
     </div>
+    <c:if test="${empty eventos}">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="alert alert-warning">
+                    <h5 class="text-center"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Não há eventos cadastrados :(</h5>
+                </div>
+            </div>
+        </div>
+    </c:if>
 </div> 

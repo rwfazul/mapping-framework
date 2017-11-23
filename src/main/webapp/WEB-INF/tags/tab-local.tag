@@ -5,6 +5,7 @@
 --%>
 
 <%@tag description="aba local" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@attribute name="titulo"%>
 
@@ -58,3 +59,30 @@
         <a href="#palestras" id="next_local" data-toggle="tab" class="btn btn-lg btn-primary btn-nav pull-right">Próximo <span class="glyphicon glyphicon-chevron-right"></span></a>
     </div>
 </div> <!-- ./tab-pane -->
+
+<c:if test="${not empty eventoUpdate}">
+    <script>
+        $(function() {
+            var _enderecoSel = $("#enderecoSel");
+            var _predio      = $("#predio");
+            var _predioSel   = $("#predioSel");
+            _enderecoSel.val("${eventoUpdate.endereco}");
+            if (_enderecoSel.val() === "R. Floriano Peixoto, 1184 - Centro") {
+                _predioSel.hide();
+                _predioSel.prop('selectedIndex', 0);
+                _predioSel.prop("required", false);
+                _predioSel.prop("name", null);
+                _predio.show();
+                _predio.prop("name", "predio");
+                _predio.val("99 - Centro de Ciências Sociais e Humanas");
+            } else {
+                _predio.hide();
+                _predio.prop("name", null);
+                _predioSel.show();
+                _predioSel.prop("name", "predio");
+                _predioSel.prop("required", true);
+                _predioSel.val('${eventoUpdate.predio.nome}');
+            }
+        });
+    </script>
+</c:if>
