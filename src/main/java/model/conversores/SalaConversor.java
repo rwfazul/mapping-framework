@@ -26,7 +26,7 @@ public class SalaConversor extends Conversor<Sala>{
         Document salaDoc = (Document) doc.get("sala");
         Sala s = new Sala();
         s.setNome((String) salaDoc.get("nome"));
-        s.setPublicoPrevisto(Integer.parseInt((String) salaDoc.get("publicoPrevisto")));
+        s.setPublicoPrevisto((Integer) salaDoc.get("publicoPrevisto"));
         return s;    
     }
     

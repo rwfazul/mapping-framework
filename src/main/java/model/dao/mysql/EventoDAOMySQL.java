@@ -120,6 +120,5 @@ public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
             eventos.add( preencher(rs) );
         return eventos;
     }
-
-
+    
 }

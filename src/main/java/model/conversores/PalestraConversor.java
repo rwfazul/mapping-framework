@@ -20,7 +20,7 @@ public class PalestraConversor extends Conversor<Palestra> {
         Document doc = new Document("titulo", p.getTitulo())
                         .append("assunto", p.getAssunto())
                         .append("descricao", p.getDescricao())
-                        .append("data", DateUtils.toString(p.getData(), "yyyy-MM-dd"))
+                        .append("data", DateUtils.toString(p.getData(), "yyyy/MM/dd"))
                         .append("inicio", DateUtils.toString(p.getHoraInicio(), "HH:mm"))
                         .append("fim", DateUtils.toString(p.getHoraFim(), "HH:mm"))
                         .append("palestrante", new PalestranteConversor().toDocument(p.getPalestrante()))
@@ -34,7 +34,7 @@ public class PalestraConversor extends Conversor<Palestra> {
         p.setTitulo((String) doc.get("titulo"));
         p.setAssunto((String) doc.get("assunto"));
         p.setDescricao((String) doc.get("descricao"));
-        p.setData(DateUtils.toDate((String) doc.get("data"), "yyyy-MM-dd"));
+        p.setData(DateUtils.toDate((String) doc.get("data"), "yyyy/MM/dd"));
         p.setHoraInicio(DateUtils.toDate((String) doc.get("inicio"), "HH:mm"));
         p.setHoraFim(DateUtils.toDate((String) doc.get("fim"), "HH:mm"));
         p.setPalestrante(new PalestranteConversor().toModel(doc));

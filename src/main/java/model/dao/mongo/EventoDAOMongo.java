@@ -41,7 +41,7 @@ public class EventoDAOMongo extends RegistrosMongo<Evento> {
 
     @Override
     public Collection<Evento> buscar(Evento e) {
-        Collection<Document> documentos = buscarDocumento("_id", e.getId()); 
+        Collection<Document> documentos = buscarDocumentos("_id", e.getId()); 
         
         Collection<Evento> eventos = new ArrayList<>();
         for (Document doc : documentos) {
@@ -52,6 +52,11 @@ public class EventoDAOMongo extends RegistrosMongo<Evento> {
         return eventos;
     }
 
+    @Override
+    public Evento buscar(String id) {
+        return new EventoConversor().toModel(buscarDocumento("_id", id));
+    }
+    
     @Override
     public Collection<Evento> buscarTodos(){
         Collection<Evento> eventos = new ArrayList<>();
@@ -65,9 +70,4 @@ public class EventoDAOMongo extends RegistrosMongo<Evento> {
         return eventos;    
     }
 
-    @Override
-    public Evento buscar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }

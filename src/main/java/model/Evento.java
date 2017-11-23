@@ -164,9 +164,9 @@ public class Evento extends Registro {
         this.palestras = palestras;
     }
 
-   /* @Override
+    @Override
     public String toString() {
-        return "Evento{" + "id=" + id + ", predio=" + predio + ", nome=" + nome + ", descricao=" + descricao + ", endereco=" + endereco + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", palestras=" + palestras + '}';
-    }*/
+        return "Evento{" + "id=" + id + ", predio=" + predio + ", nome=" + nome + ", descricao=" + descricao + ", endereco=" + endereco + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + '}';
+    }
 
 }

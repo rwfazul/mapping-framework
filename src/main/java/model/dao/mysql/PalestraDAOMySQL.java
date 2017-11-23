@@ -90,15 +90,16 @@ public class PalestraDAOMySQL extends RegistrosMySQL<Palestra> {
 
     @Override
     protected void preencherBusca(PreparedStatement ps, Palestra p) throws SQLException {
-        ps.setString(1, p.getEvento().getId());
+        ps.setInt(1, Integer.parseInt(p.getEvento().getId()));
     }
 
     @Override
     protected Palestra preencher(ResultSet rs) throws SQLException {
         Palestra p = new Palestra();
         p.setId(rs.getInt("id_palestra"));
-        p.setPalestrante( new PalestranteDAOMySQL().buscar(rs.getInt("id_palestrante")) );
-        //p.setEvento( new EventoDAOMySQL().buscar(rs.getInt("id_evento")) );
+        Integer id_palestrante = rs.getInt("id_palestrante");
+        p.setPalestrante( new PalestranteDAOMySQL().buscar(id_palestrante.toString()) );
+        // p.setEvento( new EventoDAOMySQL().buscar(rs.getInt("id_evento")) );
         p.setTitulo(rs.getString("titulo"));
         p.setAssunto(rs.getString("assunto_area"));
         p.setDescricao(rs.getString("descricao_palestra"));
