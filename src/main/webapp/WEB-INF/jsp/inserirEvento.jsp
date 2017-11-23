@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="t" %>  
 
 <script src="js/tabs-navegation.js"></script>
@@ -11,9 +12,17 @@
             <li id="tab_palestras"><a>Palestras</a></li>
         </ul>
         <div class="tab-content">
-            <t:tab-evento titulo="Informações do evento"></t:tab-evento>
-            <t:tab-local titulo="Informações do local"></t:tab-local>
-            <t:tab-palestras titulo="Palestras"></t:tab-palestras>
+            <c:choose>
+                <c:when test="${not empty eventoUpdate}">
+                    <t:tab-evento titulo="Alterar informações do evento"></t:tab-evento>
+                </c:when>
+                <c:otherwise>
+                    <t:tab-evento titulo="Informações do evento"></t:tab-evento>
+                    <t:tab-local titulo="Informações do local"></t:tab-local>
+                    <t:tab-palestras titulo="Palestras"></t:tab-palestras>
+                </c:otherwise>
+            </c:choose>  
+
         </div>
     </div> <!-- ./row -->
 </div> <!-- ./container-fluid -->
