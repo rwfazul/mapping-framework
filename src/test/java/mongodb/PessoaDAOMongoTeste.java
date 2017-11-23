@@ -38,7 +38,7 @@ public class PessoaDAOMongoTeste extends RegistrosMongo<PessoaMongoTeste> {
     
     @Override
     public Collection<PessoaMongoTeste> buscar(PessoaMongoTeste p) {
-        Collection<Document> documentos = buscarDocumento("nome", p.getNome()); 
+        Collection<Document> documentos = buscarDocumentos("nome", p.getNome()); 
         
         Collection<PessoaMongoTeste> pessoas = new ArrayList<PessoaMongoTeste>();
         for (Document doc : documentos) {
@@ -63,8 +63,8 @@ public class PessoaDAOMongoTeste extends RegistrosMongo<PessoaMongoTeste> {
     }
 
     @Override
-    public PessoaMongoTeste buscar(int id) {
+    public PessoaMongoTeste buscar(String id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
 }
