@@ -8,7 +8,6 @@ package controller;
 import banco.RegistroDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,39 +65,31 @@ public class EventoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RegistroDAO dao = new DBConfig().getRegistroDAO();
-        String acao = request.getParameter("action");
-
-        if (null != acao) switch (acao) {
-            case "list":
-                request.setAttribute("page", "gerenciarEventos.jsp");
-                break;
-            case "insert":
-                request.setAttribute("page", "inserirEvento.jsp");
-                break;
-            case "delete":
-                Evento e = (Evento) dao.buscar(Integer.parseInt(request.getParameter("id_evento")));
-                RegistroDAO pdao = new PalestraDAOMySQL();
-                Palestra p = new Palestra();
-                p.setEvento(e);
-                Collection<Palestra> palestras = pdao.buscar(p);
-                try {
-                    //Exclui todas palestras daquele evento para poder excluir o evento
-                    for (Palestra pa : palestras) {
-                        pdao.excluir(pa);
-                    }
-                    dao.excluir(e);
+        RegistroDAO rdao = new DBConfig().getRegistroDAO();
+        if (request.getParameterMap().containsKey("action")) {
+            switch (request.getParameter("action")) {
+                case "list":
                     request.setAttribute("page", "gerenciarEventos.jsp");
-                } catch (Exception ex) {
-                    Logger.getLogger(EventoServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }   break;
-            case "update":
-                e = (Evento) dao.buscar(Integer.parseInt(request.getParameter("id_evento")));
-                request.setAttribute("eventoUpdate", e);
-                request.setAttribute("page", "inserirEvento.jsp");
-                break;
-            default:
-                break;
+                    break;
+                case "insert":
+                    request.setAttribute("page", "inserirEvento.jsp");
+                    break;
+                case "delete":
+                    try {
+                        rdao.excluir(new Evento( request.getParameter("id_evento")) );
+                        request.setAttribute("page", "gerenciarEventos.jsp");
+                    } catch (Exception ex) {
+                        Logger.getLogger(EventoServlet.class.getName()).log(Level.SEVERE, null, ex);
+                    }  
+                    break;
+                case "update":
+                    Evento e  = (Evento) rdao.buscar( request.getParameter("id_evento") );
+                    request.setAttribute("eventoUpdate", e);
+                    request.setAttribute("page", "inserirEvento.jsp");
+                    break;
+                default:
+                    break;
+            }
         }
 
         processRequest(request, response);
@@ -117,9 +108,9 @@ public class EventoServlet extends HttpServlet {
             throws ServletException, IOException {
         Document doc = Document.parse(request.getParameter("eventoJson"));
         Evento e = new EventoConversor().toModel(doc);
-
+        if (e.getDescricao().isEmpty())
+            e.setDescricao("N/A");
         new DBConfig().getRegistroDAO().inserir(e);
-
         PrintWriter out = response.getWriter();
         out.print("{\"url\": \"index.jsp\"}");
         out.flush();

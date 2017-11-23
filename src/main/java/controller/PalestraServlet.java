@@ -38,17 +38,13 @@ public class PalestraServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response, Integer id_evento)
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Palestra p = new Palestra();
-        Evento e = (Evento) new DBConfig().getRegistroDAO().buscar(id_evento);
-        RegistroDAO pdao = new PalestraDAOMySQL();
-        p.setEvento(e);
-        Collection<Palestra> palestras = pdao.buscar(p);
         try {
-            request.setAttribute("palestras", palestras);
-            request.setAttribute("evento", e);
+            Collection<Evento> eventos = new DBConfig().getRegistroDAO().buscarTodos();
+            request.setAttribute("eventos", eventos);
+            request.setAttribute("page", "gerenciarPalestras.jsp");
         } catch (Exception ex) {
             Logger.getLogger(PalestraServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -69,24 +65,7 @@ public class PalestraServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer id_evento = 0;
-        String acao = request.getParameter("action");
-        RegistroDAO dao = new DBConfig().getRegistroDAO();
-        if ("list".equals(acao)) {
-            id_evento = Integer.parseInt(request.getParameter("id_evento"));
-            request.setAttribute("page", "gerenciarPalestras.jsp");
-        } else if ("delete".equals(acao)) {
-            RegistroDAO pdao = new PalestraDAOMySQL();
-            Palestra p = (Palestra) pdao.buscar(Integer.parseInt(request.getParameter("id_palestra")));
-            id_evento = Integer.parseInt(request.getParameter("id_evento"));
-            try {
-                pdao.excluir(p);
-                request.setAttribute("page", "gerenciarPalestras.jsp");
-            } catch (Exception ex) {
-                Logger.getLogger(EventoServlet.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        processRequest(request, response, id_evento);
+        processRequest(request, response);
     }
 
     /**
@@ -100,8 +79,7 @@ public class PalestraServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer id_evento = 0;
-        processRequest(request, response, id_evento);
+        processRequest(request, response);
     }
 
     /**
