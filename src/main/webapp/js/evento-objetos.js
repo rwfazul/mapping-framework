@@ -14,8 +14,9 @@ var Sala = function(nome, publicoPrevisto) {
     this.publicoPrevisto = publicoPrevisto;
 };
 
-var Palestra = function(num_palestra, titulo, assunto, descricao, data, inicio, fim, sala, palestrante) {
+var Palestra = function(num_palestra, id, titulo, assunto, descricao, data, inicio, fim, sala, palestrante) {
     this.num_palestra = num_palestra;
+    this.id = id;
     this.titulo = titulo;
     this.assunto = assunto;
     this.descricao = descricao;

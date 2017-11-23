@@ -2,7 +2,8 @@ $(function() {
     var $enderecoSel = $("#enderecoSel");   
     var $predio      = $("#predio");
     var $predioSel   = $("#predioSel");
-    $predioSel.hide();
+    if ($enderecoSel.val() === null)
+        $predioSel.hide();
     $('#enderecoSel').change(function() {
         if ($enderecoSel.val() === "R. Floriano Peixoto, 1184 - Centro") {
             $predioSel.hide();

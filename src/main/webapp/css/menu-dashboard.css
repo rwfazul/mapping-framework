@@ -107,6 +107,12 @@ i, span {
     width: 150px;
     margin: 10px auto;
     display: block;
+    background-color: #fff;
+    width: 150px;
+    margin: 15px auto;
+    padding: 10px;
+    display: block;
+    border-radius: 200px;
 }
 
 #sidebar.active .sidebar-header .img-logo {

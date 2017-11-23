@@ -22,6 +22,7 @@ $(function() {
         
         var nome_sala   = $("#form-palestra input[name='sala']").val();
         var publico     = $("#form-palestra input[name='publico']").val();
+        publico = (publico === "") ? 0 : parseInt(publico);
         var sala        = new Sala(nome_sala, publico);
         
         var titulo      = $("#form-palestra input[name='titulo']").val();
@@ -30,7 +31,7 @@ $(function() {
         var data        = $("#form-palestra input[name='data']").val();
         var inicio      = $("#form-palestra input[name='inicio']").val();
         var fim         = $("#form-palestra input[name='fim']").val();
-        var palestra    = new Palestra(num_palestra, titulo, assunto, descricao, data, inicio, fim, sala, palestrante);
+        var palestra    = new Palestra(num_palestra, 0, titulo, assunto, descricao, data, inicio, fim, sala, palestrante);
         
         palestras.push( palestra );
 
@@ -40,8 +41,8 @@ $(function() {
                 <div class='panel panel-primary'>\
                     <div class='panel-heading'>Resumo\
                         <span class='palestra-btns pull-right'>\
+                            <button value='"+ num_palestra + "' data-toggle='modal' data-target='#visualizar_palestra' class='visualizar-palestra btn btn-success'><span class='fa fa-search-plus'></span></button>\
                             <button value='"+ num_palestra + "' class='remover-palestra btn btn-danger'><span class='glyphicon glyphicon-trash'></span></button>\
-                            <button value='"+ num_palestra + "' class='editar-palestra btn btn-warning'><span class='glyphicon glyphicon-pencil'></span></button>\
                         </span>\
                     </div>\
                     <div class='panel-body'>\
@@ -55,18 +56,38 @@ $(function() {
         num_palestra++;       
     });
 
+    /* VISUALIZAR PALESTRA */
+    $("#palestras").on("click", ".resumo_palestra .visualizar-palestra", function() {
+        var num_palestra_visualizar = parseInt( this.value );
+        var div = $("#visualizacao-form-palestra");
+        for(var i = 0; i < palestras.length; i++) {
+            if (palestras[i].num_palestra === num_palestra_visualizar) {
+                div.find("input[name='nome']").val(palestras[i].palestrante.nome).prop("disabled", true);
+                div.find("select[name='sexo']").val(palestras[i].palestrante.sexo).prop("disabled", true);
+                div.find("select[name='grau_academico']").val(palestras[i].palestrante.grauAcademico).prop("disabled", true);
+                div.find("input[name='curso']").val(palestras[i].palestrante.cursoFormacao).prop("disabled", true);
+                div.find("input[name='instituicao']").val(palestras[i].palestrante.instituicaoFormacao).prop("disabled", true);
+                div.find("input[name='sala']").val(palestras[i].sala.nome).prop("disabled", true);
+                div.find("input[name='publico']").val(palestras[i].sala.publicoPrevisto).prop("disabled", true);
+                div.find("input[name='titulo']").val(palestras[i].titulo).prop("disabled", true);
+                div.find("input[name='assunto']").val(palestras[i].assunto).prop("disabled", true);
+                div.find("textarea[name='descricao']").val(palestras[i].descricao).prop("disabled", true);
+                div.find("input[name='data']").val(palestras[i].data).prop("disabled", true);
+                div.find("input[name='inicio']").val(palestras[i].inicio).prop("disabled", true);
+                div.find("input[name='fim']").val(palestras[i].fim).prop("disabled", true);
+            }
+        }    
+    });
+    
     /* REMOVER PALESTRA */
     $("#palestras").on("click", ".resumo_palestra .remover-palestra", function() {
-        var id_palestra_delete = parseInt( this.value );
+        var num_palestra_delete = parseInt( this.value );
         for(var i = 0; i < palestras.length; i++) {
-            if (palestras[i].num_palestra === id_palestra_delete)
+            if (palestras[i].num_palestra === num_palestra_delete)
                 palestras.splice(i, 1);
         }    
-        $('#palestra-' + id_palestra_delete).remove(); // remove resumo da palestra no html
-    });
-
-    /* EDITAR PALESTRA */
-    
+        $('#palestra-' + num_palestra_delete).remove(); // remove resumo da palestra no html
+    });    
     
     /* LIMPAR CAMPOS DA MODAL AO FECHAR */
     $("#nova_palestra").on("hidden.bs.modal", function() {
