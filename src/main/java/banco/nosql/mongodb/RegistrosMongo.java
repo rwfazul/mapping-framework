@@ -40,12 +40,16 @@ public abstract class RegistrosMongo<T extends Registro> implements RegistroDAO<
         collection.deleteOne(eq(chave, new ObjectId(valor)));        
     }
     
-    public Collection<Document> buscarDocumento(String chave, String valor) {
+    public Collection<Document> buscarDocumentos(String chave, String valor) {
         Collection<Document> documents = new ArrayList<>();
         for (Document cur : collection.find( eq(chave, new ObjectId(valor) ))) 
             documents.add(cur);
        
         return documents;
+    }
+    
+    public Document buscarDocumento(String chave, String valor) {
+        return ((Document) collection.find( eq(chave, new ObjectId(valor) )));
     }
     
     public Collection<Document> buscarTodosDocumentos() {

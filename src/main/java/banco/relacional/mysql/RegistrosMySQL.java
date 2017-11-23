@@ -152,12 +152,12 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
     }
     
     @Override
-    public T buscar(int id) {
+    public T buscar(String id) {
         Connection c = ConexaoMySQL.getConexao();
         T registro = null;
         try {
             PreparedStatement ps = c.prepareStatement(getSqlBuscaChavePrimaria());
-            ps.setInt(1, id);
+            ps.setInt(1, Integer.parseInt(id));
             ResultSet rs = ps.executeQuery();
             if (rs.next()) 
                 registro = preencher(rs);
@@ -169,7 +169,7 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
         }
         return registro;
     }
-
+    
     @Override
     public Collection<T> buscarTodos() {
         Connection c = ConexaoMySQL.getConexao();

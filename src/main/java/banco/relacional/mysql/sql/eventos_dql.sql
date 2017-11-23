@@ -41,5 +41,5 @@ CREATE TABLE IF NOT EXISTS palestra (
     hora_fim             TIME             NOT NULL,
     PRIMARY KEY          (id_palestra),
     FOREIGN KEY          (id_palestrante) REFERENCES palestrante (id_palestrante),
-    FOREIGN KEY          (id_evento)      REFERENCES evento      (id_evento)
+    FOREIGN KEY          (id_evento)      REFERENCES evento      (id_evento) ON DELETE CASCADE
 );
