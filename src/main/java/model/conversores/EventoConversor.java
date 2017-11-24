@@ -36,7 +36,7 @@ public class EventoConversor extends Conversor<Evento> {
     @Override
     public Evento toModel(Document doc) { 
         Evento e = new Evento();
-        if (doc.get("_id") != null)
+        if ( doc.get("_id") != null )
             e.setId(doc.get("_id").toString());
         e.setNome((String) doc.get("nome"));
         e.setDescricao((String) doc.get("descricao"));
