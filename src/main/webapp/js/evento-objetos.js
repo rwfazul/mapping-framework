@@ -15,8 +15,8 @@ var Sala = function(nome, publicoPrevisto) {
 };
 
 var Palestra = function(num_palestra, id, titulo, assunto, descricao, data, inicio, fim, sala, palestrante) {
-    this.num_palestra = num_palestra;
-    this.id = id;
+    this.num_palestra = num_palestra; // alteracoes view
+    this.id = id; // usado para controle update mysql
     this.titulo = titulo;
     this.assunto = assunto;
     this.descricao = descricao;
@@ -31,7 +31,8 @@ var Predio = function(nome) {
     this.nome = nome;
 };
 
-var Evento = function(nome, descricao, endereco, dataInicio, dataFim, predio, palestras) {
+var Evento = function(_id, nome, descricao, endereco, dataInicio, dataFim, predio, palestras) {
+    this._id = _id;
     this.nome = nome;
     this.descricao = descricao;
     this.endereco = endereco;

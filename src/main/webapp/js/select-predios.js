@@ -1,11 +1,11 @@
 $(function() {
-    var $enderecoSel = $("#enderecoSel");   
-    var $predio      = $("#predio");
-    var $predioSel   = $("#predioSel");
-    if ($enderecoSel.val() === null)
-        $predioSel.hide();
-    $('#enderecoSel').change(function() {
-        if ($enderecoSel.val() === "R. Floriano Peixoto, 1184 - Centro") {
+    if ($("#enderecoSel").val() === null)
+        $("#predioSel").hide();
+    
+    $("#enderecoSel").change(function() {
+        var $predio      = $("#predio");
+        var $predioSel   = $("#predioSel");
+        if ($( this ).val() === "R. Floriano Peixoto, 1184 - Centro") {
             $predioSel.hide();
             $predioSel.prop('selectedIndex', 0);
             $predioSel.prop("required", false);
