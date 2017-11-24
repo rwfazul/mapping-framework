@@ -7,7 +7,7 @@
 
 <%@taglib tagdir="/WEB-INF/tags" prefix="t" %>  
 
-<div id="visualizar_palestra" class="modal fade" role="dialog">
+<div id="visualizar_palestra" class="modal fade" tabindex='-1' role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
         <div class="modal-content">

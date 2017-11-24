@@ -71,7 +71,7 @@
                     <div class='panel panel-primary'>\
                         <div class='panel-heading'>Resumo\
                             <span class='palestra-btns pull-right'>\
-                                <button value='"+ num_palestra + "' data-toggle='modal' data-target='#visualizar_palestra' class='visualizar-palestra btn btn-success'><span class='fa fa-search-plus'></span></button>\
+                                <button value='"+ num_palestra + "' data-toggle='modal' data-target='#visualizar_palestra' data-keyboard='true' class='visualizar-palestra btn btn-success'><span class='fa fa-search-plus'></span></button>\
                                 <button value='"+ num_palestra + "' class='remover-palestra btn btn-danger'><span class='glyphicon glyphicon-trash'></span></button>\
                             </span>\
                         </div>\

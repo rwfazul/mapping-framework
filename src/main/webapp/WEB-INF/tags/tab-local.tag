@@ -7,7 +7,7 @@
 <%@tag description="aba local" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@attribute name="titulo"%>
+<%@attribute name="titulo" required="true"%>
 
 <%-- any content can be specified here e.g.: --%>
 <div id="local" class="tab-pane fade">

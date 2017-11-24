@@ -9,7 +9,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib tagdir="/WEB-INF/tags" prefix="t" %>  
 
-<%@attribute name="titulo"%>
+<%@attribute name="titulo" required="true"%>
 
 <%-- any content can be specified here e.g.: --%>
 <div id="evento" class="tab-pane fade in active">
@@ -20,6 +20,7 @@
                 <div class="panel-heading">Sobre o evento</div>
                 <div class="panel-body">
                     <form id="form-evento">
+                        <input type="hidden" id="id_evento_update" name="id_evento_update" value="${eventoUpdate.id}">
                         <t:input-text type="text" id="evento_nome" name="nome" label="Nome" placeholder="Digite o nome do evento" value="${eventoUpdate.nome}"></t:input-text>
                         <t:text-area id="evento_descricao" name="descricao" label="Descrição" placeholder="Descreva o evento" value="${eventoUpdate.descricao}"></t:text-area>
                         <fmt:formatDate pattern="dd/MM/yyyy" value="${eventoUpdate.dataInicio}" var="dataInicio" />  

@@ -8,7 +8,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@attribute name="titulo"%>
+<%@attribute name="titulo" required="true"%>
 
 <%-- any content can be specified here e.g.: --%>
 <div id="palestras" class="tab-pane fade">
