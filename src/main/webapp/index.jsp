@@ -20,10 +20,12 @@
     <link rel="stylesheet" href="recursos/_bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="recursos/_font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="recursos/_datetimepicker/css/datetimepicker.css">
+    <link rel="stylesheet" href="recursos/_dataTables/datatables.min.css"/>
     <link rel="stylesheet" href="css/menu-dashboard.css">
     <link rel="stylesheet" href="css/eventos.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="recursos/_bootstrap/js/bootstrap.min.js"></script>
+    <script src="recursos/_dataTables/datatables.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>var $j = jQuery.noConflict();</script>
     <script src="recursos/_datetimepicker/js/moment-with-locales.min.js"></script>
