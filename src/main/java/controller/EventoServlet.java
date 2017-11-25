@@ -8,9 +8,6 @@ package controller;
 import banco.RegistroDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -79,6 +76,7 @@ public class EventoServlet extends HttpServlet {
                     request.removeAttribute("page");
                     break;
             }
+            request.setAttribute("menuAtivo", "menu_eventos");
         }
 
         processRequest(request, response);
