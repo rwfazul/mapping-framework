@@ -6,7 +6,7 @@
 
 <%@taglib tagdir="/WEB-INF/tags" prefix="t" %>  
 
-<div id="nova_palestra" class="modal fade" role="dialog">
+<div id="nova_palestra" class="modal fade" data-keyboard="false" role="dialog">
     <div class="modal-dialog modal-lg">
         <!-- Modal content-->
         <div class="modal-content">

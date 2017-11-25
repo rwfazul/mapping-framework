@@ -48,6 +48,7 @@
             <c:if test="${not empty p.id}">
                 p_id = ${p.id};
             </c:if>
+                console.log(p_id);
             var p_sala_nome       = "<c:out value="${p.sala.nome}" escapeXml="true" />";
             var p_sala_publico    = ${p.sala.publicoPrevisto};
             var p_sala            = new Sala(p_sala_nome, p_sala_publico);

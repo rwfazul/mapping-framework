@@ -16,7 +16,7 @@
     <div class="row">
         <div class="list_palestras"></div>
         <div class="col-md-4">
-            <button type="button" data-toggle="modal" data-backdrop="static" data-target="#nova_palestra" class="btn btn-default btn-lg" style="width: 100%; height: 208px;">
+            <button type="button" data-toggle="modal" data-target="#nova_palestra" class="btn btn-default btn-lg" style="width: 100%; height: 208px;">
                 <span class="glyphicon glyphicon-plus "> </span>
             </button> 
         </div>

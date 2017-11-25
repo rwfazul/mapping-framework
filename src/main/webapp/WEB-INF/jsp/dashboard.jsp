@@ -1,8 +1,14 @@
 <div class="container-fluid">    
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <h2 class="titulo-destaque">Lorem Ipsum Dolor</h2>
-            <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            <h2 class="titulo-destaque">Olá, seja bem-vindo!</h2>
+            <p class="text-justify">
+                Este sistema foi projetado de modo há fornecer a  separação entre as camadas de 
+                persistência e aplicação. Em uma aplicação onde essas  camadas são independentes,
+                é possível trocar a forma com que os dados são persistidos, sem que isso influencie 
+                nos detalhes de exibição dos dados. Tal arquitetura arquitetura de separação de 
+                camadas possibilita o suporte a bancos de dados de paradigmas diferentes.
+            </p>
             <div class="line"></div> 
         </div>
     </div>
@@ -14,10 +20,10 @@
             <div class="panel panel-primary">
                 <div class="panel-heading">Evento</div>
                 <div class="panel-body">
-                    <p class="text-justify">Aqui você pode cadastrar um evento e então adicionar palestras a seu evento.</p>
+                    <p class="text-justify">Aqui você pode cadastrar um novo evento e gerenciá-los, bem como visualizar suas palestras e demais informações.</p>
                     <div class="botoes">
-                        <a href="eventoServlet?action=insert" class="btn btn-success">Cadastrar</a>
-                        <a href="eventoServlet?action=list" class="btn btn-success">Gerenciar</a>
+                        <a href="eventoServlet?action=insert" class="btn btn-primary">Cadastrar</a>
+                        <a href="eventoServlet?action=list" class="btn btn-primary">Gerenciar</a>
                     </div>
                 </div>
             </div>
