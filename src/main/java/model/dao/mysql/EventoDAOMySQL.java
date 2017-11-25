@@ -7,6 +7,7 @@ package model.dao.mysql;
 
 import banco.relacional.mysql.ConexaoMySQL;
 import banco.relacional.mysql.RegistrosMySQL;
+import model.comparadores.EventoMySQLComparador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -58,6 +59,24 @@ public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
             pdao.inserir(p);
         }
         return 1; // sucess
+    }
+    
+    @Override
+    public void alterar(Evento e) {
+        Evento antigo = new EventoDAOMySQL().buscar(e.getId());
+        EventoMySQLComparador comparador = new EventoMySQLComparador();
+        if (  comparador.comparaEventos(antigo, e) ) {
+            Connection c = ConexaoMySQL.getConexao();
+            try {
+                PreparedStatement ps = c.prepareStatement(getSqlAlteracao());
+                preencherAlteracao(ps, e);
+                ps.execute();
+                ps.close();
+                c.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
     
     @Override

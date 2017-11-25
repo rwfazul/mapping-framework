@@ -31,6 +31,8 @@ public class PalestraConversor extends Conversor<Palestra> {
     @Override
     public Palestra toModel(Document doc) {
         Palestra p = new Palestra();
+        if ( doc.get("id") != null )
+            p.setId((Integer) doc.get("id"));
         p.setTitulo((String) doc.get("titulo"));
         p.setAssunto((String) doc.get("assunto"));
         p.setDescricao((String) doc.get("descricao"));
