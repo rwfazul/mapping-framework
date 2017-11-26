@@ -1,10 +1,13 @@
 # mysql-mongodb
 ELC1071 Disciplina de Projeto e Gerência de Banco de Dados | 5° semestre do curso de Sistemas de Informação UFSM
 #### Grupo: Isabella Sakis, Rhauani Fazul
-	
-Em desenvolvimento...
 
-#### Descrição
+#### Contexto da aplicação
+
+Sistema para auxílio no gerenciamento de eventos na Universidade Federal de Santa Maria (UFSM). Um evento pode ser realizado fora ou dentro da universidade, caso seja interno, um dos prédios disponíveis na UFSM deve ser escolhido como sede principal do evento. 
+Ao cadastrar um evento, o administrador do sistema pode adicionar as palestras que irão fazer parte de sua programação. Todas as palestras são realizadas em alguma sala, possuem um palestrante e fazem parte de um evento. 
+
+#### Objetivo
 
 Criar uma aplicação que consiga se comunicar com dois SGBDs diferentes, sendo um relacional e um orientado a documento.
 
@@ -15,9 +18,11 @@ O sistema deve ser projetado de modo que haja separação entre as camadas de pe
 - A troca entre SGBDs deve ser feita a partir de uma funcionalidade própria da aplicação.
 
 #### Uso:
-...
-...
-...
+
+- Executar scripts para criação do banco de dados relacional;
+- As classes 'BdMongo.java' e' BdMySQL.java' dentro do pacote 'banco' devem ser modificadas de acordo com a configuração de sua base de dados;
+- As depêndencias são gerenciadas pelo Maven;'
+- O chaveamento dos SGBDs é realizado no controller 'DBConfig.java'.
 
 ------------------------------------------------------------------
 
@@ -32,10 +37,13 @@ O sistema deve ser projetado de modo que haja separação entre as camadas de pe
 
 #### Dev
 
-- Foi escolhido realizar a divisão em camadas a partir da estaca zero (sem uso de frameworks), para isso foram utilizados aguns padrões de projeto, como por exemplo:
-	+ DAO;
-	+ Abstract Factory;
-	+ Singleton.
+- Para realizar a divisão em camadas sem o uso de frameworks foram adotados diversos padrões de projeto (Design Pattern) para a estruturação da aplicação. A análise do código irá mostrar alguns padrões e técnicas, como por exemplo:
+	- Data Access Object (DAO); 
+	- Abstract Factory;
+	- Singleton;
+	- Conversores e comparadores;
+	- Classes genéricas com inferência de tipo e parâmetros limitados;
+	- Classes abstratas e interfaces de uso comum aos dois SGBDs.
 
 - SGBDS escolhidos:
 	+ Relacional
@@ -44,7 +52,16 @@ O sistema deve ser projetado de modo que haja separação entre as camadas de pe
 		- MongoDB
 
 - LP escolhida:
-	+ Java Web.
+	+ Java 	(Plataforma Java EE);
+
+- Servidor de aplicação:
+	+ Glassfish;
+
+- Container e APIs:
+	+ JDBC e MongoDB Java Driver;
+	+ Servlets (juntamente com JavaServer Pages - JSPs);
 
 - Gerenciamento de dependências:
 	+ Maven.
+
+- Foi optado por não utilizar frameworks como Spring e Hibernate.
