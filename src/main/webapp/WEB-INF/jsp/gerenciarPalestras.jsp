@@ -54,9 +54,9 @@
         $('#data_table').DataTable( {
             "language": {
                 "sEmptyTable": "Nenhuma palestra cadastrada :(",
-                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-                "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-                "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+                "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ palestras",
+                "sInfoEmpty": "Mostrando 0 até 0 de 0 palestras",
+                "sInfoFiltered": "(Filtrados de _MAX_ palestras)",
                 "sInfoPostFix": "",
                 "sInfoThousands": ".",
                 "sLengthMenu": "_MENU_ resultados por página",
