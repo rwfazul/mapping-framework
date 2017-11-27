@@ -18,8 +18,8 @@ public class DBConfig {
     private final RegistroDAO registroDAO;
            
     public DBConfig() {
-        // this.registroDAO = new EventoDAOMongo();
-        this.registroDAO = new EventoDAOMySQL();
+        this.registroDAO = new EventoDAOMongo();
+        // this.registroDAO = new EventoDAOMySQL();
     }
 
     public RegistroDAO getRegistroDAO() {

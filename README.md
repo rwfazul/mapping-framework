@@ -21,19 +21,10 @@ O sistema deve ser projetado de modo que haja separação entre as camadas de pe
 
 - Executar scripts para criação do banco de dados relacional;
 - As classes 'BdMongo.java' e' BdMySQL.java' dentro do pacote 'banco' devem ser modificadas de acordo com a configuração de sua base de dados;
-- As depêndencias são gerenciadas pelo Maven;'
+- As depêndencias são gerenciadas pelo Maven;
 - O chaveamento dos SGBDs é realizado no controller 'DBConfig.java'.
 
 ------------------------------------------------------------------
-
-#### Apresentação
-
-- Detalhes pertinentes quanto à implementação:
-	+ Decisões de projeto;
-	+ Arquitetura;
-	+ Apis usadas;
-	+ SGBDs usados;
-- A execução da ferramenta.
 
 #### Dev
 
@@ -65,3 +56,12 @@ O sistema deve ser projetado de modo que haja separação entre as camadas de pe
 	+ Maven.
 
 - Foi optado por não utilizar frameworks como Spring e Hibernate.
+
+#### Apresentação
+
+- Detalhes pertinentes quanto à implementação:
+	+ Decisões de projeto;
+	+ Arquitetura;
+	+ Apis usadas;
+	+ SGBDs usados;
+- A execução da ferramenta.
