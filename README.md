@@ -19,9 +19,9 @@ O sistema deve ser projetado de modo que haja separação entre as camadas de pe
 
 #### Uso:
 
-- Executar scripts para criação do banco de dados relacional;
-- As classes 'BdMongo.java' e' BdMySQL.java' dentro do pacote 'banco' devem ser modificadas de acordo com a configuração de sua base de dados;
-- As depêndencias são gerenciadas pelo Maven;
+- Executar scripts para criação do banco de dados relacional (PGBD/src/main/java/banco/relacional/mysql/sql/eventos_dql.sql);
+- As classes 'BdMongo.java' e' BdMySQL.java' dentro do pacote 'banco' devem ser modificadas de acordo com a configuração da base de dados;
+- As depêndencias são gerenciadas pelo Maven, logo não é preciso adicionar .JARs na BuildPath do projeto;
 - O chaveamento dos SGBDs é realizado no controller 'DBConfig.java'.
 
 ------------------------------------------------------------------

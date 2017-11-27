@@ -16,8 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Evento;
-import model.Palestra;
-import model.dao.mysql.PalestraDAOMySQL;
 
 /**
  *
@@ -42,6 +40,7 @@ public class PalestraServlet extends HttpServlet {
             Collection<Evento> eventos = new DBConfig().getRegistroDAO().buscarTodos();
             request.setAttribute("eventos", eventos);
             request.setAttribute("page", "gerenciarPalestras.jsp");
+            request.setAttribute("menuAtivo", "menu_palestras");
         } catch (Exception ex) {
             Logger.getLogger(PalestraServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
