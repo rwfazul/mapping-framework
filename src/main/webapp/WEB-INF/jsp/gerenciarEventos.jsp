@@ -31,7 +31,7 @@
                             <td><fmt:formatDate pattern="dd/MM/yyyy" value="${evento.dataInicio}" /></td>
                             <td><fmt:formatDate pattern="dd/MM/yyyy" value="${evento.dataFim}" /></td>
                             <td>
-                                <a href="eventoServlet?action=update&id_evento=${evento.id}" class="btn btn-warning"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></a>
+                                <a href="eventoServlet?action=update&id_evento=${evento.id}" class="btn btn-default"><i class="glyphicon glyphicon-pencil" aria-hidden="true"></i></a>
                                 <a data-toggle="modal" data-target="#confirmacao" data-id="${evento.id}" class="modal-confirmacao btn btn-danger"><i class=" glyphicon glyphicon-trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>
