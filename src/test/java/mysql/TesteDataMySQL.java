@@ -9,7 +9,7 @@ import model.Evento;
 import model.Palestra;
 import model.Palestrante;
 import model.Sala;
-import model.dao.mysql.PalestraDAOMySQL;
+import model.dao.relacional.mysql.PalestraDAOMySQL;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

@@ -37,7 +37,7 @@ public class PalestraServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            Collection<Evento> eventos = new DBConfig().getRegistroDAO().buscarTodos();
+            Collection<Evento> eventos = DBConfig.getRegistroDAO().buscarTodos();
             request.setAttribute("eventos", eventos);
             request.setAttribute("page", "gerenciarPalestras.jsp");
             request.setAttribute("menuAtivo", "menu_palestras");

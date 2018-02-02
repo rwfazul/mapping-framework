@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 import model.Evento;
 import model.Palestra;
 import model.Predio;
-import model.dao.mysql.PalestraDAOMySQL;
+import model.dao.relacional.mysql.PalestraDAOMySQL;
 
 /**
  *

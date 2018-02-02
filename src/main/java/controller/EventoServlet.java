@@ -5,7 +5,6 @@
  */
 package controller;
 
-import banco.RegistroDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -17,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.Evento;
 import model.conversores.EventoConversor;
 import org.bson.Document;
+import banco.InterfaceDAO;
 
 /**
  *
@@ -38,7 +38,7 @@ public class EventoServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String pagina = "/index.jsp";
-        request.setAttribute("eventos", new DBConfig().getRegistroDAO().buscarTodos());
+        request.setAttribute("eventos", DBConfig.getRegistroDAO().buscarTodos());
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(pagina);
         dispatcher.forward(request, response);
     }
@@ -55,7 +55,6 @@ public class EventoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RegistroDAO rdao = new DBConfig().getRegistroDAO();
         if (request.getParameterMap().containsKey("action")) {
             switch (request.getParameter("action")) {
                 case "list":
@@ -65,11 +64,11 @@ public class EventoServlet extends HttpServlet {
                     request.setAttribute("page", "inserirEvento.jsp");
                     break;
                 case "delete":
-                    rdao.excluir(new Evento(request.getParameter("id_evento")));
+                    DBConfig.getRegistroDAO().excluir(new Evento(request.getParameter("id_evento")));
                     request.setAttribute("page", "gerenciarEventos.jsp");
                     break;
                 case "update":
-                    request.setAttribute("eventoUpdate", (Evento) rdao.buscar(request.getParameter("id_evento")));
+                    request.setAttribute("eventoUpdate", (Evento) DBConfig.getRegistroDAO().buscar(request.getParameter("id_evento")));
                     request.setAttribute("page", "inserirEvento.jsp");
                     break;
                 default:
@@ -97,9 +96,9 @@ public class EventoServlet extends HttpServlet {
         Evento e = new EventoConversor().toModel(doc);
         
         if ( e.getId().equals("0") ) // novo evento
-            new DBConfig().getRegistroDAO().inserir(e);
+            DBConfig.getRegistroDAO().inserir(e);
         else                         // update evento existente
-            new DBConfig().getRegistroDAO().alterar(e);
+            DBConfig.getRegistroDAO().alterar(e);
             
         PrintWriter out = response.getWriter();
         out.print("{\"url\": \"index.jsp\"}");

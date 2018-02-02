@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.dao.mysql;
+package model.dao.relacional.mysql;
 
-import banco.relacional.mysql.RegistrosMySQL;
+import banco.relacional.mysql.RelacionalDAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +17,7 @@ import model.Palestrante;
  *
  * @author rhau
  */
-public class PalestranteDAOMySQL extends RegistrosMySQL<Palestrante> {
+public class PalestranteDAOMySQL extends RelacionalDAO<Palestrante> {
     
     public PalestranteDAOMySQL() {
         setSqlInsercao("INSERT INTO palestrante (nome_palestrante, sexo, grau_academico, nome_curso, instituicao) VALUES (?, ?, ?, ?, ?)");

@@ -15,7 +15,7 @@ import model.Palestra;
 import model.Palestrante;
 import model.Predio;
 import model.Sala;
-import model.dao.mongo.EventoDAOMongo;
+import model.dao.nosql.mongodb.EventoDAOMongo;
 import util.DateUtils;
 
 /**
