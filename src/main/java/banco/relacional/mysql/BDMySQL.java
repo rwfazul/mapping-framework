@@ -12,8 +12,8 @@ package banco.relacional.mysql;
 public class BDMySQL {
     
     public static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String USUARIO = "root";
-    static final String SENHA = "1234";
+    static final String USUARIO = "pgbd";
+    static final String SENHA = "123";
     static final String URL_CONEXAO = "jdbc:mysql://localhost/pgbd?useSSL=false";
    
 }
