@@ -15,7 +15,7 @@ import model.Palestra;
 import model.Palestrante;
 import model.Predio;
 import model.Sala;
-import model.dao.mysql.EventoDAOMySQL;
+import model.dao.relacional.mysql.EventoDAOMySQL;
 import util.DateUtils;
 
 /**

@@ -6,7 +6,7 @@
 package mysql;
 
 import model.Palestrante;
-import model.dao.mysql.PalestranteDAOMySQL;
+import model.dao.relacional.mysql.PalestranteDAOMySQL;
 
 /**
  *

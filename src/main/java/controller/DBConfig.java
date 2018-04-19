@@ -5,9 +5,9 @@
  */
 package controller;
 
-import banco.RegistroDAO;
-import model.dao.mongo.EventoDAOMongo;
-import model.dao.mysql.EventoDAOMySQL;
+import model.dao.nosql.mongodb.EventoDAOMongo;
+import model.dao.relacional.mysql.EventoDAOMySQL;
+import banco.InterfaceDAO;
 
 /**
  *
@@ -15,17 +15,18 @@ import model.dao.mysql.EventoDAOMySQL;
  */
 public class DBConfig {
     
-    private final RegistroDAO registroDAO;
+    // private static final InterfaceDAO registroDAO = new EventoDAOMySQL();
+    private static final InterfaceDAO registroDAO = new EventoDAOMongo();
            
-    public DBConfig() {
-        //this.registroDAO = new EventoDAOMongo();
-        this.registroDAO = new EventoDAOMySQL();
+    /*
+    static {
+        registroDAO = new EventoDAOMySQL();
+        // registroDAO = new EventoDAOMongo();
     }
-
-    public RegistroDAO getRegistroDAO() {
+    */
+    
+    public static InterfaceDAO getRegistroDAO() {
         return registroDAO;
     }
 
 }
-    
-

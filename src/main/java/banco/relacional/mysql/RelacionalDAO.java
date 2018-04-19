@@ -6,7 +6,6 @@
 package banco.relacional.mysql;
 
 import banco.Registro;
-import banco.RegistroDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,13 +14,14 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import banco.InterfaceDAO;
 
 /**
  *
  * @author isabella
  * @param <T>
  */
-public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<T> {
+public abstract class RelacionalDAO<T extends Registro> implements InterfaceDAO<T> {
 
     private String sqlInsercao;
     private String sqlAlteracao;
@@ -97,7 +97,7 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
             ps.close();
             c.close();
         } catch (SQLException ex) {
-            Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelacionalDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
     }
@@ -112,7 +112,7 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
             ps.close();
             c.close();
         } catch (SQLException ex) {
-            Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelacionalDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -126,7 +126,7 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
             ps.close();
             c.close();
         } catch (SQLException ex) {
-            Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelacionalDAO.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
 
@@ -138,15 +138,11 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
             PreparedStatement ps = c.prepareStatement(getSqlBusca());
             preencherBusca(ps, t);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                T temp = preencher(rs);
-                registros.add(temp);
-            }
-            rs.close();
+            registros = preencherLista(rs);
             ps.close();
             c.close();
         } catch (SQLException ex) {
-            Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelacionalDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return registros;
     }
@@ -165,7 +161,7 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
             ps.close();
             c.close();
         } catch (SQLException ex) {
-            Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelacionalDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return registro;
     }
@@ -173,7 +169,7 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
     @Override
     public Collection<T> buscarTodos() {
         Connection c = ConexaoMySQL.getConexao();
-        Collection<T> registros = new ArrayList<>();
+        Collection<T> registros = null;
         try {
             PreparedStatement ps = c.prepareStatement(getSqlBuscaTodos());
             ResultSet rs = ps.executeQuery();
@@ -182,7 +178,7 @@ public abstract class RegistrosMySQL<T extends Registro> implements RegistroDAO<
             rs.close();
             c.close();
         } catch (SQLException ex) {
-            Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelacionalDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         return registros;

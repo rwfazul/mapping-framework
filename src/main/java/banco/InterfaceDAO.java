@@ -12,7 +12,7 @@ import java.util.Collection;
  * @author isabella
  * @param <T>
  */
-public interface RegistroDAO<T extends Registro> {
+public interface InterfaceDAO<T extends Registro> {
         
     abstract Integer inserir(T t);
     

@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model.dao.mysql;
+package model.dao.relacional.mysql;
 
 import banco.relacional.mysql.ConexaoMySQL;
-import banco.relacional.mysql.RegistrosMySQL;
+import banco.relacional.mysql.RelacionalDAO;
 import model.comparadores.EventoMySQLComparador;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -24,7 +24,7 @@ import model.Predio;
  *
  * @author isabella
  */
-public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
+public class EventoDAOMySQL extends RelacionalDAO<Evento> {
 
     public EventoDAOMySQL() {
         setSqlInsercao("INSERT INTO evento (nome_evento, descricao_evento, endereco, predio, data_inicio, data_fim) VALUES (?, ?, ?, ?, ?, ?)");
@@ -50,7 +50,7 @@ public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
             ps.close();
             c.close();
         } catch (SQLException ex) {
-            Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(RelacionalDAO.class.getName()).log(Level.SEVERE, null, ex);
         }        
         // para cada evento salva as suas palestras
         PalestraDAOMySQL pdao = new PalestraDAOMySQL();
@@ -74,7 +74,7 @@ public class EventoDAOMySQL extends RegistrosMySQL<Evento> {
                 ps.close();
                 c.close();
             } catch (SQLException ex) {
-                Logger.getLogger(RegistrosMySQL.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(RelacionalDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
